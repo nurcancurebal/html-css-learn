@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş yapma sayfası</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/htmldersleri/login-form/style.css">
+</head>
+
+<body>
+    <form class="login-form">
+        <h1>Login</h1>
+        <input type="text" id="username" class="tpbox" placeholder="Enter your username">
+        <input type="password" id="password" class="tpbox" placeholder="Enter your password">
+        <input type="button" class="btn" onclick="signIn()" value="Login">
+    </form>
+
+    <script>
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+
+        function signIn() {
+
+            alert(`
+            Giriş yaptınız!!!
+            Username: ${username.value}
+            Password: ${password.value}
+            `)
+        }
+    </script>
+</body>
+
+</html>
