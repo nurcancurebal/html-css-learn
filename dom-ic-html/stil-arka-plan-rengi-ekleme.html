@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document Object Model</title>
+</head>
+
+<body>
+
+    <h1 class='title' id='first-title'>First Title</h1>
+    <h1 class='title' id='second-title'>Second Title</h1>
+    <h1 class='title' id='third-title'>Third Title</h1>
+    <h1></h1>
+    <script>
+
+        const titles = document.querySelectorAll('h1');
+
+        titles.forEach((title, i) => {
+
+            title.style.fontSize = '24px'; // tüm başlıklar 24 piksel yazı tipi boyutuna sahip olacak
+
+            if (i % 2 === 0) {
+                title.style.backgroundColor = 'green'
+            } else {
+                title.style.backgroundColor = 'red'
+            }
+        })
+    </script>
+</body>
+
+</html>
