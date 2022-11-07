@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30DaysOfJavaScript:22 Day: World Countries List</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .countries-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>World Countries List</h2>
+        <h4 id="total-countries"></h4>
+        <h3>30DaysOfJavaScript:DOM-Day-2</h3>
+        <h3>Author: Nurcan Cürebal</h3>
+    </header>
+
+    <div class="countries-container">
+        <div class="countries-wrapper">
+
+        </div>
+    </div>
+
+    <script>
+        const countries = [
+            'Afganistan',
+            'Arnavutluk',
+            'Cezayir',
+            'Andora',
+            'Angola',
+            'Antigua ve Barbuda',
+            'Arjantin',
+            'Ermenistan',
+            'Avustralya',
+            'Avusturya',
+            'Azerbaycan',
+            'Bahamalar',
+            'Bahreyn',
+            'Bangladeş',
+            'Barbados',
+            'Beyaz Rusya',
+            'Belçika',
+            'Beliz',
+            'Ben',
+            'Butan',
+            'Bolivya',
+            'Bosna Hersek',
+            'Botsvana',
+            'Brezilya',
+            'Bruney',
+            'Bulgaristan',
+            'Burkina Faso',
+            'Burundi',
+            'Kamboçya',
+            'Kamerun',
+            'Kanada',
+            'Cape Verde',
+            'Orta Afrika Cumhuriyeti',
+            'Çad',
+            'Şili',
+            'Çin',
+            'Kolombiya',
+            'Komorlar',
+            'Kongo (Brazzaville)',
+            'Kongo',
+            'Kosta Rika',
+            "Fildişi Sahili",
+            'Hırvatistan ',
+            'Küba',
+            'Kıbrıs',
+            'Çek Cumhuriyeti',
+            'Danimarka',
+            'Cibuti',
+            'Dominika',
+            'Dominik Cumhuriyeti',
+            'Doğu Timor (Timor Timur)',
+            'Ekvador',
+            'Mısır',
+            'El Salvador',
+            'Ekvator Ginesi',
+            'Eritre',
+            'Estonya',
+            'Etiyopya',
+            'Fiji',
+            'Finlandiya',
+            'Fransa',
+            'Gabon',
+            'Gambiya,',
+            'Gürcistan',
+            'Almanya',
+            'Gana',
+            'Yunanistan',
+            'Grena',
+            'Guatemala',
+            'Gine',
+            'Gine-Bissau',
+            'Guyana',
+            'Haiti',
+            'Honduras',
+            'Macaristan',
+            'İzlanda',
+            'Hindistan',
+            'Endonezya',
+            'İran',
+            'Irak',
+            'İrlanda',
+            'İsrail',
+            'İtalya',
+            'Jamaika',
+            'Japonya',
+            'Ürdün',
+            'Kazakistan',
+            'Kenya',
+            'Kirbati',
+            'Kore, Kuzey',
+            'Kore, Güney',
+            'Kuveyt',
+            'Kırgızistan',
+            'Laos',
+            'Letonya',
+            'Lübnan',
+            'Lezoto',
+            'Liberya',
+            'Libya',
+            'Lihtenştayn',
+            'Litvanya',
+            'Lüksemburg',
+            'Makedonya',
+            'Madagaskar',
+            'Malavi',
+            'Malezya',
+            'Maldivler',
+            'Mali',
+            'Malta',
+            'Marshall Adaları',
+            'Moritanya',
+            'Mauritius',
+            'Meksika',
+            'Mikronezya',
+            'Moldova',
+            'Monako',
+            'Moğolistan',
+            'Fas',
+            'Mozambik',
+            'Myanmar',
+            'Namibya',
+            'Nauru',
+            'Nepal',
+            'Hollanda',
+            'Yeni Zelanda',
+            'Nikaragua',
+            'Nijer',
+            'Nijerya',
+            'Norveç',
+            'Umman',
+            'Pakistan',
+            'Pala',
+            'Panama',
+            'Papua Yeni Gine',
+            'Paraguay',
+            'Peru',
+            'Filipinler',
+            'Polonya',
+            'Portekiz',
+            'Katar',
+            'Romanya',
+            'Rusya',
+            'Ruanda',
+            'Aziz Kitts ve Nevis',
+            'Aziz Lucia',
+            'Aziz Vincent',
+            'Samoa',
+            'San Marino',
+            'Sao Tome ve Principe',
+            'Suudi Arabistan',
+            'Senegal',
+            'Sırbistan ve Karadağ',
+            'Seyşeller',
+            'Sierra Leone',
+            'Singapur',
+            'Slovakya',
+            'Slovenya',
+            'Süleyman Adaları',
+            'Somali',
+            'Güney Afrika',
+            'İspanya',
+            'Sri Lanka',
+            'Sudan',
+            'Surinam',
+            'Svaziland',
+            'İsveç',
+            'İsviçre',
+            'Suriye',
+            'Tayvan',
+            'Tacikistan',
+            'Tanzanya',
+            'Tayland',
+            'Git',
+            'Tanga',
+            'Trinidad ve Tobago',
+            'Tunus',
+            'Türkiye',
+            'Türkmenistan',
+            'Tuval',
+            'Uganda',
+            'Ukrayna',
+            'Birleşik Arap Emirlikleri',
+            'Birleşik Krallık',
+            'Amerika Birleşik Devletleri',
+            'Uruguay',
+            'Özbekistan',
+            'Vanuatu',
+            'Vatikan Şehri',
+            'Venezuela',
+            'Vietnam',
+            'Yemen',
+            'Zambiya',
+            'Zimbabve'
+        ]
+
+        let panel = document.querySelector(".countries-wrapper");
+
+        for (let index = 0; index < countries.length; index++) {
+
+            const divCountry = document.createElement('div');
+            divCountry.innerHTML = countries[i];
+            panel.appendChild(divCountry);
+        }
+
+    </script>
+
+</body>
+
+</html>

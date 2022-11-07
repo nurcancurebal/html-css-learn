@@ -9,43 +9,72 @@
     <style>
         * {
             box-sizing: border-box;
-
-        }
-
-        h1,
-        h2,
-        h3 {
-            display: -webkit-flex;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #panel {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 50px;
+            margin: 20px;
+        }
+
+        .pNumberGenerator {
+            flex: 15%;
+            text-align: center;
+            padding: 80px;
+            font-size: 50px;
+            margin: 5px;
+            color: white;
         }
     </style>
 </head>
 
 <body>
-    <div class="titles">
-        <h1>Number Generator</h1>
-        <h2 style="text-decoration: underline;">30DaysOfJavaScript:DOM Day 2</h2>
-        <h3 style="text-decoration: underline;">Author: Nurcan Cürebal</h3>
-    </div>
+
+    <h1 style="margin-top: 40px ;">Number Generator</h1>
+    <h2 style="text-decoration: underline;">30DaysOfJavaScript:DOM Day 2</h2>
+    <h3 style="text-decoration: underline;">Author: Nurcan Cürebal</h3>
+
 
     <div id="panel"></div>
 
     <script>
+
+        const isPrime = num => {
+
+            for (let i = 2, s = Math.sqrt(num); i <= s; i++)
+
+                if (num % i === 0) return false;
+                
+            return num > 1;
+        }
+
         let panel = document.querySelector("#panel");
-        let pNumber;
 
         for (let i = 0; i < 102; i++) {
 
-            pNumber = document.createElement('p');
+            const pNumber = document.createElement('p');
+
             pNumber.className = 'pNumberGenerator';
             pNumber.innerHTML = i;
-            pNumber.style.fontSize = '24px'
+
+            if (isPrime(i)) {
+                pNumber.style.backgroundColor = "#ff4646"; // red
+            } else if (i % 2 == 0) {
+                pNumber.style.backgroundColor = "#57e557"; // green
+            } else {
+                pNumber.style.backgroundColor = "#e3e34b"; // yellow
+            }
+
             panel.appendChild(pNumber);
-            console.log(pNumber);
         }
 
     </script>
