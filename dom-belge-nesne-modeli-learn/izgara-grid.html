@@ -11,6 +11,8 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
         }
 
         body {
@@ -19,27 +21,47 @@
             flex-direction: column;
         }
 
-        .countries-container {
+        .countries-wrapper {
             display: grid;
             grid-template-columns: auto auto auto auto auto auto;
-            gap: 20px;
+            gap: 10px;
+            margin-top: 80px;
+            margin: 30px;
+        }
+
+        .countries-wrapper div {
+            border: 1px rgba(0, 0, 0, 0.1) solid;
+            padding: 100px 70px;
+            margin: 5px;
+            text-align: center;
+        }
+
+        h2 {
+            letter-spacing: 20px;
+            width: 1000px;
+            font-weight: 900;
+            font-size: 30px;
+        }
+
+        #total-countries {
+            width: 1000px;
+            font-weight: 900;
+            font-size: 30px;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h2>World Countries List</h2>
+    <header style="text-align: center;">
+        <h2>WORLD COUNTRIES LIST</h2>
         <h4 id="total-countries"></h4>
-        <h3>30DaysOfJavaScript:DOM-Day-2</h3>
-        <h3>Author: Nurcan Cürebal</h3>
+        <h3 style="font-weight:100;opacity: 0.7;">30DaysOfJavaScript:DOM-Day-2</h3>
+        <h3 style="font-weight:100;opacity: 0.7;">Author: Nurcan Cürebal</h3>
     </header>
 
-    <div class="countries-container">
-        <div class="countries-wrapper">
+    <div class="countries-wrapper">
 
-        </div>
     </div>
 
     <script>
@@ -237,19 +259,28 @@
             'Yemen',
             'Zambiya',
             'Zimbabve'
-        ]
+        ];
+
 
         let panel = document.querySelector(".countries-wrapper");
 
         for (let index = 0; index < countries.length; index++) {
 
             const divCountry = document.createElement('div');
-            divCountry.innerHTML = countries[i];
+
+            countries[index] = countries[index].toUpperCase();
+
+            divCountry.innerHTML = countries[index];
             panel.appendChild(divCountry);
         }
+
+        let totalCountries = document.querySelector("#total-countries");
+        totalCountries.textContent = `Total number of countries: ${countries.length}`
 
     </script>
 
 </body>
 
 </html>
+
+// TODO yapamadım
