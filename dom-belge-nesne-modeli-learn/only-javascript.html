@@ -132,15 +132,15 @@
 
     <script>
 
+        let details = document.createElement('details');
+
+        document.body.appendChild(details);
+
         const title = document.querySelector('#year');
 
         title.style.fontSize = "60px";
 
         let classWrapper = document.querySelectorAll('li');
-
-        let details = document.querySelectorAll('details');
-
-
 
         classWrapper.forEach((wrapper, i) => {
 

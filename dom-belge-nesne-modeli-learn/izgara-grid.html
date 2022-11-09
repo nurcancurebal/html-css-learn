@@ -11,42 +11,44 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
+            font-family: 'Arial';
         }
 
         body {
             display: flex;
             align-items: center;
             flex-direction: column;
+            font-size: 18px;
+        }
+
+        .container {
+            width: 70vw;
         }
 
         .countries-wrapper {
             display: grid;
             grid-template-columns: auto auto auto auto auto auto;
-            gap: 10px;
-            margin-top: 80px;
-            margin: 30px;
+            gap: 15px;
         }
 
-        .countries-wrapper div {
-            border: 1px rgba(0, 0, 0, 0.1) solid;
-            padding: 100px 70px;
-            margin: 5px;
+        .countries-wrapper>div {
+            box-shadow: 0px 0px 3px 3px rgba(143, 143, 143, 0.150);
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 200px;
         }
 
-        h2 {
-            letter-spacing: 20px;
-            width: 1000px;
-            font-weight: 900;
-            font-size: 30px;
+        .countries-wrapper>div>p {
+            max-width: 80%;
+            font-weight: 550;
         }
 
         #total-countries {
-            width: 1000px;
-            font-weight: 900;
-            font-size: 30px;
+            opacity: 0.9;
+            font-size: 24px;
         }
     </style>
 </head>
@@ -54,14 +56,14 @@
 <body>
 
     <header style="text-align: center;">
-        <h2>WORLD COUNTRIES LIST</h2>
+        <h1 style="font-size: 60px; letter-spacing: 19px; margin-top: 7px;">WORLD COUNTRIES LIST</h1>
         <h4 id="total-countries"></h4>
-        <h3 style="font-weight:100;opacity: 0.7;">30DaysOfJavaScript:DOM-Day-2</h3>
-        <h3 style="font-weight:100;opacity: 0.7;">Author: Nurcan Cürebal</h3>
+        <h3 style="opacity: 0.7;font-weight: 100; font-size: 19px;">30DaysOfJavaScript:DOM-Day-2</h3>
+        <h3 style="opacity: 0.7;font-weight: 100; font-size: 19px;margin-bottom: 118px;">Author: Nurcan Cürebal</h3>
     </header>
 
-    <div class="countries-wrapper">
-
+    <div class="container">
+        <div class="countries-wrapper" />
     </div>
 
     <script>
@@ -266,21 +268,23 @@
 
         for (let index = 0; index < countries.length; index++) {
 
+
             const divCountry = document.createElement('div');
+            const paraf = document.createElement('p');
+
 
             countries[index] = countries[index].toUpperCase();
 
-            divCountry.innerHTML = countries[index];
+            paraf.innerHTML = countries[index];
+            divCountry.appendChild(paraf);
             panel.appendChild(divCountry);
         }
 
         let totalCountries = document.querySelector("#total-countries");
-        totalCountries.textContent = `Total number of countries: ${countries.length}`
+        totalCountries.textContent = `Total Number of countries: ${countries.length}`
 
     </script>
 
 </body>
 
 </html>
-
-// TODO yapamadım
