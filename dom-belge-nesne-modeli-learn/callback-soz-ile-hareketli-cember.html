@@ -12,6 +12,7 @@
 
         .circle {
             transition-property: width, height, margin-left, margin-top;
+            /* transition-property= Geçiş efektinin kullanılacağı CSS özelliğinin adını belirtir.*/
             transition-duration: 2s;
             position: fixed;
             transform: translateX(-50%) translateY(-50%);
@@ -31,7 +32,7 @@
 
             showCircle(150, 150, 100, div => {
 
-                div.classList.add('message-ball');
+                div.classList.add('message-ball'); // ikinci class name atadı birincisi= circle, ikincisi= message-ball aslında aynı div
                 div.append("Hello, world!");
             });
         }
@@ -52,16 +53,14 @@
                 div.style.width = radius * 2 + 'px';
                 div.style.height = radius * 2 + 'px';
 
-                div.addEventListener('transitionend', function handler() { // TODO anlamadım
+                div.addEventListener('transitionend', function handler() { // transitionend= transition-duration bu olayın bitişini yakalar
 
-                    div.removeEventListener('transitionend', handler);
-                    callback(div);
+                    div.removeEventListener('transitionend', handler); // addEventListener 1 kez çalıştıktan sonra durması için sildik yoksa bir kaç kez durma olayını kontrol edebilir
+                    callback(div); // div.addEventListener('transitionend'...), div deki transition olayı bittiğinde bu işlemi(callback) yap
                 });
             }, 0);
         }
     </script>
-
-
 </body>
 
 </html>
