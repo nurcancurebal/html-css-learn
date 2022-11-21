@@ -13,24 +13,56 @@
             padding: 0;
         }
 
+        .header> :nth-child(n) {
+            font-weight: 500;
+        }
+
         .container {
-            width: 900px;
-            height: 900px;
-            background-color: red;
+            width: 80%;
+            height: 100vh;
+            background-color: #f0f0f0;
             display: flex;
-            justify-content: center;
+            margin: auto;
+        }
+
+        .containerTwo {
+            width: 100%;
+            text-align: center;
+        }
+
+        .text {
+            border: 1px solid #5bbc7a;
+            padding: 12px;
+            margin-top: 15px;
+            width: 50vw;
+        }
+
+        .text:focus-visible {
+            outline: none;
+        }
+
+        .button {
+            background-color: #5bbc7a;
+            border: none;
+            color: white;
+            padding: 12px;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Number Generator</h1>
-        <h2>30DaysOfJavaScript:DOM Day 3</h2>
-        <h3>Author: Nurcan Cürebal</h3>
-
-        <input type="text" value="Generate for numbers...">
-        <button type="button">Generate numbers</button>
+        <div class="containerTwo">
+            <div class="header">
+                <h1 style="color:#5bbc7a;font-size: 40px;">Number Generator</h1>
+                <h2>30DaysOfJavaScript:DOM Day 3</h2>
+                <h3 style="color: #3c3c3c;">Author: Nurcan Cürebal</h3>
+            </div>
+            <p style="color:red;display: none;">Enter number value on the input field to generate numbers</p>
+            <p style="color:red;display: none;">İnput value must be a number</p>
+            <input class="text" type="text" placeholder="Generate mor numbers...">
+            <button class="button" type="button">Generate numbers</button>
+        </div>
     </div>
 </body>
 
