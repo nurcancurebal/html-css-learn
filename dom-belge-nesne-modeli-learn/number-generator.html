@@ -13,99 +13,87 @@
             padding: 0;
         }
 
-        .header> :nth-child(n) {
-            font-weight: 500;
+        body {
+            display: flex;
+            justify-content: center;
         }
 
         .container {
             width: 80%;
             height: 100vh;
             background-color: #f0f0f0;
-            display: flex;
-            margin: auto;
         }
 
-        .containerTwo {
+        header {
             width: 100%;
             text-align: center;
         }
 
+        header>.description> :nth-child(n) {
+            font-weight: 500;
+        }
 
-        #generator-input {
+        header>#generator-input {
             border: 1px solid #5bbc7a;
             padding: 12px;
             margin-top: 15px;
             width: 50vw;
         }
 
-        #generator-input:focus-visible {
+        header>#generator-input:focus-visible {
             outline: none;
         }
 
-        .button {
+        button {
             background-color: #5bbc7a;
             border: none;
             color: white;
             padding: 12px;
+            margin-left: 12px;
+        }
+
+        #number-content {
+            background-color: #b4b3a9;
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto auto auto auto;
+            width: 70vw;
+            margin-top: 20px;
+            gap: 5px;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="containerTwo">
-            <div class="header">
+        <header>
+            <div class="description">
                 <h1 style="color:#5bbc7a;font-size: 40px;">Number Generator</h1>
                 <h2>30DaysOfJavaScript:DOM Day 3</h2>
                 <h3 style="color: #3c3c3c;">Author: Nurcan Cürebal</h3>
             </div>
             <p id="p1" style="color:red;display: none;">Enter number value on the input field to generate numbers</p>
             <p id="p2" style="color:red;display: none;">İnput value must be a number</p>
-            <input id="generator-input" type="text" placeholder="Generate mor numbers...">
-            <button onclick="clickMe()" class="button" type="button">Generate numbers</button>
-        </div>
-        <div class="containerThree"></div>
+            <input id="generator-input" type="text" placeholder="Generate more numbers...">
+            <button onclick="clickMe()" class="generate-buton" type="button">Generate numbers</button>
+        </header>
+        <div id="number-content"></div>
     </div>
 
     <script>
 
-        // ? Input alanı.
-        const generatorInput = document.querySelector('#generator-input');
+        const numberContent = document.getElementById("number-content");
 
-        // ? Bu input alanına bir tuşlama yani keypress işlemi gerçekleştiginde çalışcak event alanı.
-        document.querySelector('#generator-input').addEventListener("keypress", () => {
+        for (let index = 0; index < 51; index++) {
 
-            // ? Her ihtimale karşı bir tuşlama zaten olduysa üstündeki blur hata alanı kalkması gerekiyor yani p1 alanı.
-            document.getElementById("p1").style.display = "none";
+            const numberElement = document.createElement('div');
+            numberElement.textContent = index;
+            numberElement.style.color = "white";
+            numberElement.style.fontSize = "32px"
+            numberElement.style.backgroundColor = "grey";
+            numberElement.style.padding = "5px 0px";
+            numberElement.style.textAlign = "center";
 
-            // ? Eğer veri sayı ise ve içi boş değilse çalışcak alan.
-            if (isFinite(generatorInput.value) && generatorInput.value) {
-                document.getElementById("p2").style.display = "none"; // ? p2 hata blogu gizlenir.
-            } else { // ? Eğer bunların dışında bir işlem gerçekleşirse tekrar p2 bloğu block cevirilir ve hata gösterilir.
-                document.getElementById("p2").style.display = "block"; // ? p2 hata alanı gösterilir.
-            }
-
-        });
-
-        // ? Input alanından cıkıldıgında devreye gircek event.
-        document.querySelector('#generator-input').addEventListener("blur", () => {
-
-            // ? Eğer input alanında mouse dışarıya click gerçekleştiyse ve input alanının içi boş ise hata göstermesi gerekir.
-            if (!generatorInput.value) {
-                document.getElementById("p1").style.display = "block"; // ? p1 hata alanı.
-            }
-
-        });
-
-        // ? Sadece method çalıştıgında kullanılacak alan.
-        function clickMe() {
-
-            // ? Buton her ihtimale karşı korunmalıdır, eğer sayı degilse veya inputun içi boş ise bu fonksiyona return beya şu anlamda break mantıgıyla fonksiyonun durdurulması sağlanır.
-            if (!isFinite(generatorInput.value) || !generatorInput.value) return;
-
-            // ? Buraya generator olucak verilerin kodları yazılacaktır.
-            console.log("BAŞARILI");
-
+            numberContent.appendChild(numberElement);
         }
 
     </script>
