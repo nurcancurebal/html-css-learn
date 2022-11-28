@@ -50,7 +50,7 @@
 
         const isPrime = num => {
 
-            for (let i = 2, s = Math.sqrt(num); i <= s; i++)
+            for (let i = 2; i <= Math.sqrt(num); i++)
 
                 if (num % i === 0) return false;
 
@@ -67,11 +67,16 @@
             pNumber.innerHTML = i;
 
             if (isPrime(i)) {
-                pNumber.style.backgroundColor = "#ff4646"; // red
+
+                pNumber.style.backgroundColor = "#eb695b"; // red
+
             } else if (i % 2 == 0) {
-                pNumber.style.backgroundColor = "#57e557"; // green
+
+                pNumber.style.backgroundColor = "#5bbc7a"; // green
+
             } else {
-                pNumber.style.backgroundColor = "#e3e34b"; // yellow
+
+                pNumber.style.backgroundColor = "#f7dc5c"; // yellow
             }
 
             panel.appendChild(pNumber);
