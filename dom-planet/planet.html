@@ -26,14 +26,14 @@
             font-size: 65px;
         }
 
-        div .flex-item-image {
+        .flex-container {
             background-color: rgba(74, 74, 74, 0.364);
             margin-top: 2%;
             width: 75vw;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 70px 0;
+            padding: 30px 0;
         }
 
         #mass {
@@ -49,10 +49,14 @@
             border-radius: 5px;
         }
 
-        select {
+        #planet-select {
             outline: none;
             padding: 10px;
             border-radius: 5px;
+        }
+
+        #planet-select option {
+            background-color: #6d6c6c94;
         }
 
         header {
@@ -68,7 +72,7 @@
         <input type="text" id="mass" placeholder="Mass in Kilogram" />
 
         <select id="planet-select">
-            <option value='none'>--select planet-- </option>
+            <option value=''>--select planet-- </option>
             <option value="1">MERCURY</option>
             <option value="2">VENUS</option>
             <option value="3">EARTH</option>
@@ -87,23 +91,115 @@
     <main>
         <div class="flex-container">
 
-            <div class="flex-item-image">
+            <div class="flex-item-image" style="padding:40px 0">
                 <img src='/dom-planet/pictures/earth.png' class="planet-image" />
             </div>
-            <div class="flex-item description"></div>
+            <div class="flex-item-description"></div>
 
         </div>
-        <article class="planet">
-
-
-        </article>
     </main>
 
     <script>
-        const whitchPlaneet = document.getElementById("planet-select");
+        const whitchPlanet = document.getElementById("planet-select");
+        const whitchText = document.getElementById("mass");
+        const img = document.getElementsByClassName("flex-item-image");
+        const description = document.querySelector(".flex-item-description");
 
-        function calculateWeight (){
-            console.log(whitchPlaneet.value);
+        function calculateWeight() {
+
+            if (!whitchText.value) {
+
+                img[0].style.display = "none";
+
+                description.textContent = "Mass is required";
+                description.style.color = "white";
+                description.style.backgroundColor = "rgba(74, 74, 74, 0.542)";
+                description.style.padding = "25px 165px";
+
+            } else if (isFinite(whitchText.value)) {
+
+                switch (whitchPlanet.value) {
+                    case "1":
+
+                        const result = whitchText.value * 3.7;
+
+                        console.log(result);
+
+                        break;
+
+                    case "2":
+
+                        const result2 = whitchText.value * 8.87;
+
+                        console.log(result2);
+
+                        break;
+
+                    case "3":
+
+                        const result3 = whitchText.value * 9.8;
+
+                        console.log(result3);
+
+                        break;
+
+                    case "4":
+
+                        const result4 = whitchText.value * 1.6;
+
+                        console.log(result4);
+
+                        break;
+
+                    case "5":
+
+                        const result5 = whitchText.value * 3.7;
+
+                        console.log(result5);
+
+                        break;
+
+                    case "6":
+
+                        const result6 = whitchText.value * 25.8;
+
+                        console.log(result6);
+
+                        break;
+
+                    case "7":
+
+                        const result7 = whitchText.value * 10.44;
+
+                        console.log(result7);
+
+                        break;
+
+                    case "8":
+
+                        const result8 = whitchText.value * 8.69;
+
+                        console.log(result8);
+
+                        break;
+
+                    case "9":
+
+                        const result9 = whitchText.value * 11.15;
+
+                        console.log(result9);
+
+                        break;
+
+                    default:
+
+                        const result10 = whitchText.value * 0.62;
+
+                        console.log(result10);
+
+                        break;
+                }
+            }
         }
 
 
