@@ -4,6 +4,7 @@
 <head>
     <title>Solar System: Document Object Model:30 Days Of JavaScript</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
@@ -36,7 +37,7 @@
             padding: 30px 0;
         }
 
-        #mass {
+        #mass-input {
             margin-top: 10%;
             padding: 10px;
             outline: none;
@@ -59,6 +60,22 @@
             background-color: #6d6c6c94;
         }
 
+        #description-area {
+            color: white;
+            background-color: rgba(74, 74, 74, 0.542);
+            padding: 25px 165px;
+            font-size: 25px;
+            display: none;
+        }
+
+        .description-area-calculate {
+            padding: 100px;
+            background-color: #444444cc;
+            border-radius: 100%;
+            max-width: 100px;
+            position: relative;
+        }
+
         header {
             text-align: center;
         }
@@ -69,139 +86,109 @@
     <header>
         <h1>Calculate a weight of an object on a planet</h1>
 
-        <input type="text" id="mass" placeholder="Mass in Kilogram" />
+        <input type="text" id="mass-input" placeholder="Enter Mass in Kilogram" />
 
         <select id="planet-select">
-            <option value=''>--select planet-- </option>
-            <option value="1">MERCURY</option>
-            <option value="2">VENUS</option>
-            <option value="3">EARTH</option>
-            <option value="4">MOON</option>
-            <option value="5">MARS</option>
-            <option value="6">JUPITER</option>
-            <option value="7">SATURN</option>
-            <option value="8">URANUS</option>
-            <option value="9">NEPTUNE</option>
-            <option value="10">PLUTO</option>
+            <option value="none">Select Planet</option>
+            <option value="mercury">Mercury</option>
+            <option value="venus">Venus</option>
+            <option value="earth">Earth</option>
+            <option value="moon">Moon</option>
+            <option value="mars">Mars</option>
+            <option value="jupiter">Jupiter</option>
+            <option value="saturn">Saturn</option>
+            <option value="uranus">Uranus</option>
+            <option value="neptune">Neptun</option>
+            <option value="pluto">Pluto</option>
         </select>
 
-        <button onclick="calculateWeight()">Calculate weight</button>
+        <button onclick="calculateWeight()">Calculate Weight</button>
 
     </header>
     <main>
         <div class="flex-container">
-
-            <div class="flex-item-image" style="padding:40px 0">
-                <img src='/dom-planet/pictures/earth.png' class="planet-image" />
-            </div>
-            <div class="flex-item-description"></div>
-
+            <img id="planet-area" src="./pictures/earth.png" />
+            <div id="description-area"></div>
         </div>
     </main>
 
     <script>
-        const whitchPlanet = document.getElementById("planet-select");
-        const whitchText = document.getElementById("mass");
-        const img = document.getElementsByClassName("flex-item-image");
-        const description = document.querySelector(".flex-item-description");
+        const planetSelect = document.getElementById("planet-select");
+        const massInput = document.getElementById("mass-input");
+        const planetArea = document.getElementById("planet-area");
+        const descriptionArea = document.getElementById("description-area");
 
         function calculateWeight() {
 
-            if (!whitchText.value) {
+            if (!massInput.value) {
 
-                img[0].style.display = "none";
+                planetArea.style.display = "none";
+                descriptionArea.style.display = "block";
+                descriptionArea.innerText = "Mass is required";
 
-                description.textContent = "Mass is required";
-                description.style.color = "white";
-                description.style.backgroundColor = "rgba(74, 74, 74, 0.542)";
-                description.style.padding = "25px 165px";
+            } else if (isFinite(massInput.value)) {
 
-            } else if (isFinite(whitchText.value)) {
+                if (planetSelect.value == "none") {
 
-                switch (whitchPlanet.value) {
-                    case "1":
+                    planetArea.style.display = "none";
+                    descriptionArea.style.display = "block";
+                    descriptionArea.innerText = "You did not coose a planet yet";
 
-                        const result = whitchText.value * 3.7;
+                } else {
 
-                        console.log(result);
+                    const planetValues = {
+                        earth: 9.8,
+                        jupiter: 25.8,
+                        mars: 3.7,
+                        mercury: 3.7,
+                        venus: 8.87,
+                        earth: 9.8,
+                        moon: 1.6,
+                        saturn: 10.44,
+                        uranus: 8.69,
+                        neptune: 11.15,
+                        pluto: 0.62
+                    };
 
-                        break;
+                    planetArea.style.display = "block";
+                    planetArea.setAttribute("src", `./pictures/${planetSelect.value}.png`);
+                    descriptionArea.innerHTML = "";
+                    descriptionArea.style.marginLeft = "20px";
+                    descriptionArea.style.display = "flex";
+                    descriptionArea.style.alignItems = "center";
+                    descriptionArea.style.flexDirection = "column";
 
-                    case "2":
+                    const descriptionAreaHeader = document.createElement("div");
+                    descriptionAreaHeader.style.marginBottom = "20px";
 
-                        const result2 = whitchText.value * 8.87;
+                    const descriptionAreaHeaderPre = document.createElement("span");
+                    descriptionAreaHeaderPre.innerText = "The weight of the object on"
+                    descriptionAreaHeaderPre.style.marginRight = "10px";
 
-                        console.log(result2);
+                    const descriptionAreaHeaderWhichPlanet = document.createElement("span");
+                    descriptionAreaHeaderWhichPlanet.style.fontWeight = "700";
+                    descriptionAreaHeaderWhichPlanet.innerText = String(planetSelect.value).toUpperCase();
 
-                        break;
+                    descriptionAreaHeader.appendChild(descriptionAreaHeaderPre);
+                    descriptionAreaHeader.appendChild(descriptionAreaHeaderWhichPlanet);
 
-                    case "3":
+                    const descriptionAreaFooter = document.createElement("div");
+                    descriptionAreaFooter.className = "description-area-calculate";
 
-                        const result3 = whitchText.value * 9.8;
+                    const descriptionAreaFooterText = document.createElement("p");
+                    descriptionAreaFooterText.innerText = (Number(massInput.value) * planetValues[planetSelect.value]).toFixed(2) + " N";
+                    descriptionAreaFooterText.style.position = "absolute";
+                    descriptionAreaFooterText.style.left = "40px"
+                    descriptionAreaFooterText.style.top = "85px"
 
-                        console.log(result3);
+                    descriptionAreaFooter.appendChild(descriptionAreaFooterText)
 
-                        break;
+                    descriptionArea.appendChild(descriptionAreaHeader);
+                    descriptionArea.appendChild(descriptionAreaFooter);
 
-                    case "4":
-
-                        const result4 = whitchText.value * 1.6;
-
-                        console.log(result4);
-
-                        break;
-
-                    case "5":
-
-                        const result5 = whitchText.value * 3.7;
-
-                        console.log(result5);
-
-                        break;
-
-                    case "6":
-
-                        const result6 = whitchText.value * 25.8;
-
-                        console.log(result6);
-
-                        break;
-
-                    case "7":
-
-                        const result7 = whitchText.value * 10.44;
-
-                        console.log(result7);
-
-                        break;
-
-                    case "8":
-
-                        const result8 = whitchText.value * 8.69;
-
-                        console.log(result8);
-
-                        break;
-
-                    case "9":
-
-                        const result9 = whitchText.value * 11.15;
-
-                        console.log(result9);
-
-                        break;
-
-                    default:
-
-                        const result10 = whitchText.value * 0.62;
-
-                        console.log(result10);
-
-                        break;
                 }
             }
         }
-
 
     </script>
 
