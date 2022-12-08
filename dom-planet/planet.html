@@ -21,33 +21,20 @@
             margin-top: 2%;
         }
 
+        header {
+            text-align: center;
+        }
+
         header h1 {
             color: white;
             text-shadow: 2px 2px #6565ac;
             font-size: 65px;
         }
 
-        .flex-container {
-            background-color: rgba(74, 74, 74, 0.364);
-            margin-top: 2%;
-            width: 75vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 0;
-        }
-
         #mass-input {
             margin-top: 10%;
             padding: 10px;
             outline: none;
-        }
-
-        header button {
-            background-color: #6d6c6c;
-            padding: 12px;
-            color: white;
-            border-radius: 5px;
         }
 
         #planet-select {
@@ -58,6 +45,23 @@
 
         #planet-select option {
             background-color: #6d6c6c94;
+        }
+
+        header button {
+            background-color: #6d6c6c;
+            padding: 12px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .flex-container {
+            background-color: rgba(74, 74, 74, 0.364);
+            margin-top: 2%;
+            width: 75vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
         }
 
         #description-area {
@@ -74,10 +78,6 @@
             border-radius: 100%;
             max-width: 100px;
             position: relative;
-        }
-
-        header {
-            text-align: center;
         }
     </style>
 </head>
@@ -162,7 +162,7 @@
                     descriptionAreaHeader.style.marginBottom = "20px";
 
                     const descriptionAreaHeaderPre = document.createElement("span");
-                    descriptionAreaHeaderPre.innerText = "The weight of the object on"
+                    descriptionAreaHeaderPre.innerText = "The weight of the object on";
                     descriptionAreaHeaderPre.style.marginRight = "10px";
 
                     const descriptionAreaHeaderWhichPlanet = document.createElement("span");
@@ -175,13 +175,13 @@
                     const descriptionAreaFooter = document.createElement("div");
                     descriptionAreaFooter.className = "description-area-calculate";
 
-                    const descriptionAreaFooterText = document.createElement("p");
+                    const descriptionAreaFooterText = document.createElement("b");
                     descriptionAreaFooterText.innerText = (Number(massInput.value) * planetValues[planetSelect.value]).toFixed(2) + " N";
                     descriptionAreaFooterText.style.position = "absolute";
-                    descriptionAreaFooterText.style.left = "40px"
-                    descriptionAreaFooterText.style.top = "85px"
+                    descriptionAreaFooterText.style.left = "58px";
+                    descriptionAreaFooterText.style.top = "85px";
 
-                    descriptionAreaFooter.appendChild(descriptionAreaFooterText)
+                    descriptionAreaFooter.appendChild(descriptionAreaFooterText);
 
                     descriptionArea.appendChild(descriptionAreaHeader);
                     descriptionArea.appendChild(descriptionAreaFooter);
