@@ -6,1680 +6,1135 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>World Countries Data</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background-color: #f1f1f1;
+            padding: 20px 0;
+            box-shadow: 10px 2px 5px #c6c5c5c0;
+        }
+
+        #first-title {
+            color: #f2a93b;
+            font-size: 70px;
+        }
+
+        #button-note {
+            padding: 25px 0;
+            text-align: center;
+        }
+
+        .buttons {
+            background-color: #f2a93b;
+            border: none;
+            padding: 7px 15px;
+        }
+
+        #note {
+            margin-top: 10px;
+        }
+
+        #table-div {
+            background-color: #f1f1f1;
+            width: 100%;
+            height: 650px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 10px 2px 5px 5px #c6c5c5c0;
+        }
+
+        table {
+            width: 85%;
+            height: 70%;
+            margin-top: 20px;
+        }
+
+        td {
+            padding: 5px;
+            text-align: left;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
 
+    <div>
+        <header>
+            <div id="first-title">World Countries Data</div>
+            <div id="second-title">Currently, we have 250 countries</div>
+        </header>
+
+        <div id="button-note">
+            <button class="buttons" onclick="mostSpokenTenPopulation()" style="margin-right:10px;">POPULATION</button>
+            <button class="buttons" onclick="mostSpokenTenLanguages()">LANGUAGES</button>
+            <div id="note">10 Most Spoken Languages In The World</div>
+        </div>
+
+        <div id="table-div">
+
+            <table></table>
+
+        </div>
+    </div>
+
     <script>
+
+        const table = document.querySelector("table");
 
         const countries = [
             {
                 name: 'Afghanistan',
-                capital: 'Kabul',
                 languages: ['Pashto', 'Uzbek', 'Turkmen'],
-                population: 27657145,
-                flag: 'https://restcountries.eu/data/afg.svg',
-                currency: 'Afghan afghani'
+                population: 27657145
             },
             {
                 name: 'Åland Islands',
-                capital: 'Mariehamn',
                 languages: ['Swedish'],
-                population: 28875,
-                flag: 'https://restcountries.eu/data/ala.svg',
-                currency: 'Euro'
+                population: 28875
             },
             {
                 name: 'Albania',
-                capital: 'Tirana',
                 languages: ['Albanian'],
-                population: 2886026,
-                flag: 'https://restcountries.eu/data/alb.svg',
-                currency: 'Albanian lek'
+                population: 2886026
             },
             {
                 name: 'Algeria',
-                capital: 'Algiers',
                 languages: ['Arabic'],
-                population: 40400000,
-                flag: 'https://restcountries.eu/data/dza.svg',
-                currency: 'Algerian dinar'
+                population: 40400000
             },
             {
                 name: 'American Samoa',
-                capital: 'Pago Pago',
                 languages: ['English', 'Samoan'],
-                population: 57100,
-                flag: 'https://restcountries.eu/data/asm.svg',
-                currency: 'United State Dollar'
+                population: 57100
             },
             {
                 name: 'Andorra',
-                capital: 'Andorra la Vella',
                 languages: ['Catalan'],
-                population: 78014,
-                flag: 'https://restcountries.eu/data/and.svg',
-                currency: 'Euro'
+                population: 78014
             },
             {
                 name: 'Angola',
-                capital: 'Luanda',
                 languages: ['Portuguese'],
-                population: 25868000,
-                flag: 'https://restcountries.eu/data/ago.svg',
-                currency: 'Angolan kwanza'
+                population: 25868000
             },
             {
                 name: 'Anguilla',
-                capital: 'The Valley',
                 languages: ['English'],
-                population: 13452,
-                flag: 'https://restcountries.eu/data/aia.svg',
-                currency: 'East Caribbean dollar'
+                population: 13452
             },
             {
                 name: 'Antarctica',
-                capital: '',
                 languages: ['English', 'Russian'],
-                population: 1000,
-                flag: 'https://restcountries.eu/data/ata.svg',
-                currency: 'Australian dollar'
+                population: 1000
             },
             {
                 name: 'Antigua and Barbuda',
-                capital: "Saint John's",
                 languages: ['English'],
-                population: 86295,
-                flag: 'https://restcountries.eu/data/atg.svg',
-                currency: 'East Caribbean dollar'
+                population: 86295
             },
             {
                 name: 'Argentina',
-                capital: 'Buenos Aires',
                 languages: ['Spanish', 'Guaraní'],
-                population: 43590400,
-                flag: 'https://restcountries.eu/data/arg.svg',
-                currency: 'Argentine peso'
+                population: 43590400
             },
             {
                 name: 'Armenia',
-                capital: 'Yerevan',
                 languages: ['Armenian', 'Russian'],
-                population: 2994400,
-                flag: 'https://restcountries.eu/data/arm.svg',
-                currency: 'Armenian dram'
+                population: 2994400
             },
             {
                 name: 'Aruba',
-                capital: 'Oranjestad',
                 languages: ['Dutch', '(Eastern) Punjabi'],
-                population: 107394,
-                flag: 'https://restcountries.eu/data/abw.svg',
-                currency: 'Aruban florin'
+                population: 107394
             },
             {
                 name: 'Australia',
-                capital: 'Canberra',
                 languages: ['English'],
-                population: 24117360,
-                flag: 'https://restcountries.eu/data/aus.svg',
-                currency: 'Australian dollar'
+                population: 24117360
             },
             {
                 name: 'Austria',
-                capital: 'Vienna',
                 languages: ['German'],
-                population: 8725931,
-                flag: 'https://restcountries.eu/data/aut.svg',
-                currency: 'Euro'
+                population: 8725931
             },
             {
                 name: 'Azerbaijan',
-                capital: 'Baku',
                 languages: ['Azerbaijani'],
-                population: 9730500,
-                flag: 'https://restcountries.eu/data/aze.svg',
-                currency: 'Azerbaijani manat'
+                population: 9730500
             },
             {
                 name: 'Bahamas',
-                capital: 'Nassau',
                 languages: ['English'],
-                population: 378040,
-                flag: 'https://restcountries.eu/data/bhs.svg',
-                currency: 'Bahamian dollar'
+                population: 378040
             },
             {
                 name: 'Bahrain',
-                capital: 'Manama',
                 languages: ['Arabic'],
-                population: 1404900,
-                flag: 'https://restcountries.eu/data/bhr.svg',
-                currency: 'Bahraini dinar'
+                population: 1404900
             },
             {
                 name: 'Bangladesh',
-                capital: 'Dhaka',
                 languages: ['Bengali'],
-                population: 161006790,
-                flag: 'https://restcountries.eu/data/bgd.svg',
-                currency: 'Bangladeshi taka'
+                population: 161006790
             },
             {
                 name: 'Barbados',
-                capital: 'Bridgetown',
                 languages: ['English'],
-                population: 285000,
-                flag: 'https://restcountries.eu/data/brb.svg',
-                currency: 'Barbadian dollar'
+                population: 285000
             },
             {
                 name: 'Belarus',
-                capital: 'Minsk',
                 languages: ['Belarusian', 'Russian'],
-                population: 9498700,
-                flag: 'https://restcountries.eu/data/blr.svg',
-                currency: 'New Belarusian ruble'
+                population: 9498700
             },
             {
                 name: 'Belgium',
-                capital: 'Brussels',
                 languages: ['Dutch', 'French', 'German'],
-                population: 11319511,
-                flag: 'https://restcountries.eu/data/bel.svg',
-                currency: 'Euro'
+                population: 11319511
             },
             {
                 name: 'Belize',
-                capital: 'Belmopan',
                 languages: ['English', 'Spanish'],
-                population: 370300,
-                flag: 'https://restcountries.eu/data/blz.svg',
-                currency: 'Belize dollar'
+                population: 370300
             },
             {
                 name: 'Benin',
-                capital: 'Porto-Novo',
                 languages: ['French'],
-                population: 10653654,
-                flag: 'https://restcountries.eu/data/ben.svg',
-                currency: 'West African CFA franc'
+                population: 10653654
             },
             {
                 name: 'Bermuda',
-                capital: 'Hamilton',
                 languages: ['English'],
-                population: 61954,
-                flag: 'https://restcountries.eu/data/bmu.svg',
-                currency: 'Bermudian dollar'
+                population: 61954
             },
             {
                 name: 'Bhutan',
-                capital: 'Thimphu',
                 languages: ['Dzongkha'],
-                population: 775620,
-                flag: 'https://restcountries.eu/data/btn.svg',
-                currency: 'Bhutanese ngultrum'
+                population: 775620
             },
             {
                 name: 'Bolivia (Plurinational State of)',
-                capital: 'Sucre',
                 languages: ['Spanish', 'Aymara', 'Quechua'],
-                population: 10985059,
-                flag: 'https://restcountries.eu/data/bol.svg',
-                currency: 'Bolivian boliviano'
+                population: 10985059
             },
             {
                 name: 'Bonaire, Sint Eustatius and Saba',
-                capital: 'Kralendijk',
                 languages: ['Dutch'],
-                population: 17408,
-                flag: 'https://restcountries.eu/data/bes.svg',
-                currency: 'United States dollar'
+                population: 17408
             },
             {
                 name: 'Bosnia and Herzegovina',
-                capital: 'Sarajevo',
                 languages: ['Bosnian', 'Croatian', 'Serbian'],
-                population: 3531159,
-                flag: 'https://restcountries.eu/data/bih.svg',
-                currency: 'Bosnia and Herzegovina convertible mark'
+                population: 3531159
             },
             {
                 name: 'Botswana',
-                capital: 'Gaborone',
                 languages: ['English', 'Tswana'],
-                population: 2141206,
-                flag: 'https://restcountries.eu/data/bwa.svg',
-                currency: 'Botswana pula'
+                population: 2141206
             },
             {
                 name: 'Bouvet Island',
-                capital: '',
                 languages: ['Norwegian', 'Norwegian Bokmål', 'Norwegian Nynorsk'],
-                population: 0,
-                flag: 'https://restcountries.eu/data/bvt.svg',
-                currency: 'Norwegian krone'
+                population: 0
             },
             {
                 name: 'Brazil',
-                capital: 'Brasília',
                 languages: ['Portuguese'],
-                population: 206135893,
-                flag: 'https://restcountries.eu/data/bra.svg',
-                currency: 'Brazilian real'
+                population: 206135893
             },
             {
                 name: 'British Indian Ocean Territory',
-                capital: 'Diego Garcia',
                 languages: ['English'],
-                population: 3000,
-                flag: 'https://restcountries.eu/data/iot.svg',
-                currency: 'United States dollar'
+                population: 3000
             },
             {
                 name: 'United States Minor Outlying Islands',
-                capital: '',
                 languages: ['English'],
-                population: 300,
-                flag: 'https://restcountries.eu/data/umi.svg',
-                currency: 'United States Dollar'
+                population: 300
             },
             {
                 name: 'Virgin Islands (British)',
-                capital: 'Road Town',
                 languages: ['English'],
-                population: 28514,
-                flag: 'https://restcountries.eu/data/vgb.svg',
-                currency: '[D]'
+                population: 28514
             },
             {
                 name: 'Virgin Islands (U.S.)',
-                capital: 'Charlotte Amalie',
                 languages: ['English'],
-                population: 114743,
-                flag: 'https://restcountries.eu/data/vir.svg',
-                currency: 'United States dollar'
+                population: 114743
             },
             {
                 name: 'Brunei Darussalam',
-                capital: 'Bandar Seri Begawan',
                 languages: ['Malay'],
-                population: 411900,
-                flag: 'https://restcountries.eu/data/brn.svg',
-                currency: 'Brunei dollar'
+                population: 411900
             },
             {
                 name: 'Bulgaria',
-                capital: 'Sofia',
                 languages: ['Bulgarian'],
-                population: 7153784,
-                flag: 'https://restcountries.eu/data/bgr.svg',
-                currency: 'Bulgarian lev'
+                population: 7153784
             },
             {
                 name: 'Burkina Faso',
-                capital: 'Ouagadougou',
                 languages: ['French', 'Fula'],
-                population: 19034397,
-                flag: 'https://restcountries.eu/data/bfa.svg',
-                currency: 'West African CFA franc'
+                population: 19034397
             },
             {
                 name: 'Burundi',
-                capital: 'Bujumbura',
                 languages: ['French', 'Kirundi'],
-                population: 10114505,
-                flag: 'https://restcountries.eu/data/bdi.svg',
-                currency: 'Burundian franc'
+                population: 10114505
             },
             {
                 name: 'Cambodia',
-                capital: 'Phnom Penh',
                 languages: ['Khmer'],
-                population: 15626444,
-                flag: 'https://restcountries.eu/data/khm.svg',
-                currency: 'Cambodian riel'
+                population: 15626444
             },
             {
                 name: 'Cameroon',
-                capital: 'Yaoundé',
                 languages: ['English', 'French'],
-                population: 22709892,
-                flag: 'https://restcountries.eu/data/cmr.svg',
-                currency: 'Central African CFA franc'
+                population: 22709892
             },
             {
                 name: 'Canada',
-                capital: 'Ottawa',
                 languages: ['English', 'French'],
-                population: 36155487,
-                flag: 'https://restcountries.eu/data/can.svg',
-                currency: 'Canadian dollar'
+                population: 36155487
             },
             {
                 name: 'Cabo Verde',
-                capital: 'Praia',
                 languages: ['Portuguese'],
-                population: 531239,
-                flag: 'https://restcountries.eu/data/cpv.svg',
-                currency: 'Cape Verdean escudo'
+                population: 531239
             },
             {
                 name: 'Cayman Islands',
-                capital: 'George Town',
                 languages: ['English'],
-                population: 58238,
-                flag: 'https://restcountries.eu/data/cym.svg',
-                currency: 'Cayman Islands dollar'
+                population: 58238
             },
             {
                 name: 'Central African Republic',
-                capital: 'Bangui',
                 languages: ['French', 'Sango'],
-                population: 4998000,
-                flag: 'https://restcountries.eu/data/caf.svg',
-                currency: 'Central African CFA franc'
+                population: 4998000
             },
             {
                 name: 'Chad',
-                capital: "N'Djamena",
                 languages: ['French', 'Arabic'],
-                population: 14497000,
-                flag: 'https://restcountries.eu/data/tcd.svg',
-                currency: 'Central African CFA franc'
+                population: 14497000
             },
             {
                 name: 'Chile',
-                capital: 'Santiago',
                 languages: ['Spanish'],
-                population: 18191900,
-                flag: 'https://restcountries.eu/data/chl.svg',
-                currency: 'Chilean peso'
+                population: 18191900
             },
             {
                 name: 'China',
-                capital: 'Beijing',
                 languages: ['Chinese'],
-                population: 1377422166,
-                flag: 'https://restcountries.eu/data/chn.svg',
-                currency: 'Chinese yuan'
+                population: 1377422166
             },
             {
                 name: 'Christmas Island',
-                capital: 'Flying Fish Cove',
                 languages: ['English'],
-                population: 2072,
-                flag: 'https://restcountries.eu/data/cxr.svg',
-                currency: 'Australian dollar'
+                population: 2072
             },
             {
                 name: 'Cocos (Keeling) Islands',
-                capital: 'West Island',
                 languages: ['English'],
-                population: 550,
-                flag: 'https://restcountries.eu/data/cck.svg',
-                currency: 'Australian dollar'
+                population: 550
             },
             {
                 name: 'Colombia',
-                capital: 'Bogotá',
                 languages: ['Spanish'],
-                population: 48759958,
-                flag: 'https://restcountries.eu/data/col.svg',
-                currency: 'Colombian peso'
+                population: 48759958
             },
             {
                 name: 'Comoros',
-                capital: 'Moroni',
                 languages: ['Arabic', 'French'],
-                population: 806153,
-                flag: 'https://restcountries.eu/data/com.svg',
-                currency: 'Comorian franc'
+                population: 806153
             },
             {
                 name: 'Congo',
-                capital: 'Brazzaville',
                 languages: ['French', 'Lingala'],
-                population: 4741000,
-                flag: 'https://restcountries.eu/data/cog.svg',
-                currency: 'Central African CFA franc'
+                population: 4741000
             },
             {
                 name: 'Congo (Democratic Republic of the)',
-                capital: 'Kinshasa',
                 languages: ['French', 'Lingala', 'Kongo', 'Swahili', 'Luba-Katanga'],
-                population: 85026000,
-                flag: 'https://restcountries.eu/data/cod.svg',
-                currency: 'Congolese franc'
+                population: 85026000
             },
             {
                 name: 'Cook Islands',
-                capital: 'Avarua',
                 languages: ['English'],
-                population: 18100,
-                flag: 'https://restcountries.eu/data/cok.svg',
-                currency: 'New Zealand dollar'
+                population: 18100
             },
             {
                 name: 'Costa Rica',
-                capital: 'San José',
                 languages: ['Spanish'],
-                population: 4890379,
-                flag: 'https://restcountries.eu/data/cri.svg',
-                currency: 'Costa Rican colón'
+                population: 4890379
             },
             {
                 name: 'Croatia',
-                capital: 'Zagreb',
                 languages: ['Croatian'],
-                population: 4190669,
-                flag: 'https://restcountries.eu/data/hrv.svg',
-                currency: 'Croatian kuna'
+                population: 4190669
             },
             {
                 name: 'Cuba',
-                capital: 'Havana',
                 languages: ['Spanish'],
-                population: 11239004,
-                flag: 'https://restcountries.eu/data/cub.svg',
-                currency: 'Cuban convertible peso'
+                population: 11239004
             },
             {
                 name: 'Curaçao',
-                capital: 'Willemstad',
                 languages: ['Dutch', '(Eastern) Punjabi', 'English'],
-                population: 154843,
-                flag: 'https://restcountries.eu/data/cuw.svg',
-                currency: 'Netherlands Antillean guilder'
+                population: 154843
             },
             {
                 name: 'Cyprus',
-                capital: 'Nicosia',
                 languages: ['Greek (modern)', 'Turkish', 'Armenian'],
-                population: 847000,
-                flag: 'https://restcountries.eu/data/cyp.svg',
-                currency: 'Euro'
+                population: 847000
             },
             {
                 name: 'Czech Republic',
-                capital: 'Prague',
                 languages: ['Czech', 'Slovak'],
-                population: 10558524,
-                flag: 'https://restcountries.eu/data/cze.svg',
-                currency: 'Czech koruna'
+                population: 10558524
             },
             {
                 name: 'Denmark',
-                capital: 'Copenhagen',
                 languages: ['Danish'],
-                population: 5717014,
-                flag: 'https://restcountries.eu/data/dnk.svg',
-                currency: 'Danish krone'
+                population: 5717014
             },
             {
                 name: 'Djibouti',
-                capital: 'Djibouti',
                 languages: ['French', 'Arabic'],
-                population: 900000,
-                flag: 'https://restcountries.eu/data/dji.svg',
-                currency: 'Djiboutian franc'
+                population: 900000
             },
             {
                 name: 'Dominica',
-                capital: 'Roseau',
                 languages: ['English'],
-                population: 71293,
-                flag: 'https://restcountries.eu/data/dma.svg',
-                currency: 'East Caribbean dollar'
+                population: 71293
             },
             {
                 name: 'Dominican Republic',
-                capital: 'Santo Domingo',
                 languages: ['Spanish'],
-                population: 10075045,
-                flag: 'https://restcountries.eu/data/dom.svg',
-                currency: 'Dominican peso'
+                population: 10075045
             },
             {
                 name: 'Ecuador',
-                capital: 'Quito',
                 languages: ['Spanish'],
-                population: 16545799,
-                flag: 'https://restcountries.eu/data/ecu.svg',
-                currency: 'United States dollar'
+                population: 16545799
             },
             {
                 name: 'Egypt',
-                capital: 'Cairo',
                 languages: ['Arabic'],
-                population: 91290000,
-                flag: 'https://restcountries.eu/data/egy.svg',
-                currency: 'Egyptian pound'
+                population: 91290000
             },
             {
                 name: 'El Salvador',
-                capital: 'San Salvador',
                 languages: ['Spanish'],
-                population: 6520675,
-                flag: 'https://restcountries.eu/data/slv.svg',
-                currency: 'United States dollar'
+                population: 6520675
             },
             {
                 name: 'Equatorial Guinea',
-                capital: 'Malabo',
                 languages: ['Spanish', 'French'],
-                population: 1222442,
-                flag: 'https://restcountries.eu/data/gnq.svg',
-                currency: 'Central African CFA franc'
+                population: 1222442
             },
             {
                 name: 'Eritrea',
-                capital: 'Asmara',
                 languages: ['Tigrinya', 'Arabic', 'English'],
-                population: 5352000,
-                flag: 'https://restcountries.eu/data/eri.svg',
-                currency: 'Eritrean nakfa'
+                population: 5352000
             },
             {
                 name: 'Estonia',
-                capital: 'Tallinn',
                 languages: ['Estonian'],
-                population: 1315944,
-                flag: 'https://restcountries.eu/data/est.svg',
-                currency: 'Euro'
+                population: 1315944
             },
             {
                 name: 'Ethiopia',
-                capital: 'Addis Ababa',
                 languages: ['Amharic'],
-                population: 92206005,
-                flag: 'https://restcountries.eu/data/eth.svg',
-                currency: 'Ethiopian birr'
+                population: 92206005
             },
             {
                 name: 'Falkland Islands (Malvinas)',
-                capital: 'Stanley',
                 languages: ['English'],
-                population: 2563,
-                flag: 'https://restcountries.eu/data/flk.svg',
-                currency: 'Falkland Islands pound'
+                population: 2563
             },
             {
                 name: 'Faroe Islands',
-                capital: 'Tórshavn',
                 languages: ['Faroese'],
-                population: 49376,
-                flag: 'https://restcountries.eu/data/fro.svg',
-                currency: 'Danish krone'
+                population: 49376
             },
             {
                 name: 'Fiji',
-                capital: 'Suva',
                 languages: ['English', 'Fijian', 'Hindi', 'Urdu'],
-                population: 867000,
-                flag: 'https://restcountries.eu/data/fji.svg',
-                currency: 'Fijian dollar'
+                population: 867000
             },
             {
                 name: 'Finland',
-                capital: 'Helsinki',
                 languages: ['Finnish', 'Swedish'],
-                population: 5491817,
-                flag: 'https://restcountries.eu/data/fin.svg',
-                currency: 'Euro'
+                population: 5491817
             },
             {
                 name: 'France',
-                capital: 'Paris',
                 languages: ['French'],
-                population: 66710000,
-                flag: 'https://restcountries.eu/data/fra.svg',
-                currency: 'Euro'
+                population: 66710000
             },
             {
                 name: 'French Guiana',
-                capital: 'Cayenne',
                 languages: ['French'],
-                population: 254541,
-                flag: 'https://restcountries.eu/data/guf.svg',
-                currency: 'Euro'
+                population: 254541
             },
             {
                 name: 'French Polynesia',
-                capital: 'Papeetē',
                 languages: ['French'],
-                population: 271800,
-                flag: 'https://restcountries.eu/data/pyf.svg',
-                currency: 'CFP franc'
+                population: 271800
             },
             {
                 name: 'French Southern Territories',
-                capital: 'Port-aux-Français',
                 languages: ['French'],
-                population: 140,
-                flag: 'https://restcountries.eu/data/atf.svg',
-                currency: 'Euro'
+                population: 140
             },
             {
                 name: 'Gabon',
-                capital: 'Libreville',
                 languages: ['French'],
-                population: 1802278,
-                flag: 'https://restcountries.eu/data/gab.svg',
-                currency: 'Central African CFA franc'
+                population: 1802278
             },
             {
                 name: 'Gambia',
-                capital: 'Banjul',
                 languages: ['English'],
-                population: 1882450,
-                flag: 'https://restcountries.eu/data/gmb.svg',
-                currency: 'Gambian dalasi'
+                population: 1882450
             },
             {
                 name: 'Georgia',
-                capital: 'Tbilisi',
                 languages: ['Georgian'],
-                population: 3720400,
-                flag: 'https://restcountries.eu/data/geo.svg',
-                currency: 'Georgian Lari'
+                population: 3720400
             },
             {
                 name: 'Germany',
-                capital: 'Berlin',
                 languages: ['German'],
-                population: 81770900,
-                flag: 'https://restcountries.eu/data/deu.svg',
-                currency: 'Euro'
+                population: 81770900
             },
             {
                 name: 'Ghana',
-                capital: 'Accra',
                 languages: ['English'],
-                population: 27670174,
-                flag: 'https://restcountries.eu/data/gha.svg',
-                currency: 'Ghanaian cedi'
+                population: 27670174
             },
             {
                 name: 'Gibraltar',
-                capital: 'Gibraltar',
                 languages: ['English'],
-                population: 33140,
-                flag: 'https://restcountries.eu/data/gib.svg',
-                currency: 'Gibraltar pound'
+                population: 33140
             },
             {
                 name: 'Greece',
-                capital: 'Athens',
                 languages: ['Greek (modern)'],
-                population: 10858018,
-                flag: 'https://restcountries.eu/data/grc.svg',
-                currency: 'Euro'
+                population: 10858018
             },
             {
                 name: 'Greenland',
-                capital: 'Nuuk',
                 languages: ['Kalaallisut'],
-                population: 55847,
-                flag: 'https://restcountries.eu/data/grl.svg',
-                currency: 'Danish krone'
+                population: 55847
             },
             {
                 name: 'Grenada',
-                capital: "St. George's",
                 languages: ['English'],
-                population: 103328,
-                flag: 'https://restcountries.eu/data/grd.svg',
-                currency: 'East Caribbean dollar'
+                population: 103328
             },
             {
                 name: 'Guadeloupe',
-                capital: 'Basse-Terre',
                 languages: ['French'],
-                population: 400132,
-                flag: 'https://restcountries.eu/data/glp.svg',
-                currency: 'Euro'
+                population: 400132
             },
             {
                 name: 'Guam',
-                capital: 'Hagåtña',
                 languages: ['English', 'Chamorro', 'Spanish'],
-                population: 184200,
-                flag: 'https://restcountries.eu/data/gum.svg',
-                currency: 'United States dollar'
+                population: 184200
             },
             {
                 name: 'Guatemala',
-                capital: 'Guatemala City',
                 languages: ['Spanish'],
-                population: 16176133,
-                flag: 'https://restcountries.eu/data/gtm.svg',
-                currency: 'Guatemalan quetzal'
+                population: 16176133
             },
             {
                 name: 'Guernsey',
-                capital: 'St. Peter Port',
                 languages: ['English', 'French'],
-                population: 62999,
-                flag: 'https://restcountries.eu/data/ggy.svg',
-                currency: 'British pound'
+                population: 62999
             },
             {
                 name: 'Guinea',
-                capital: 'Conakry',
                 languages: ['French', 'Fula'],
-                population: 12947000,
-                flag: 'https://restcountries.eu/data/gin.svg',
-                currency: 'Guinean franc'
+                population: 12947000
             },
             {
                 name: 'Guinea-Bissau',
-                capital: 'Bissau',
                 languages: ['Portuguese'],
-                population: 1547777,
-                flag: 'https://restcountries.eu/data/gnb.svg',
-                currency: 'West African CFA franc'
+                population: 1547777
             },
             {
                 name: 'Guyana',
-                capital: 'Georgetown',
                 languages: ['English'],
-                population: 746900,
-                flag: 'https://restcountries.eu/data/guy.svg',
-                currency: 'Guyanese dollar'
+                population: 746900
             },
             {
                 name: 'Haiti',
-                capital: 'Port-au-Prince',
                 languages: ['French', 'Haitian'],
-                population: 11078033,
-                flag: 'https://restcountries.eu/data/hti.svg',
-                currency: 'Haitian gourde'
+                population: 11078033
             },
             {
                 name: 'Heard Island and McDonald Islands',
-                capital: '',
                 languages: ['English'],
-                population: 0,
-                flag: 'https://restcountries.eu/data/hmd.svg',
-                currency: 'Australian dollar'
+                population: 0
             },
             {
                 name: 'Holy See',
-                capital: 'Rome',
                 languages: ['Latin', 'Italian', 'French', 'German'],
-                population: 451,
-                flag: 'https://restcountries.eu/data/vat.svg',
-                currency: 'Euro'
+                population: 451
             },
             {
                 name: 'Honduras',
-                capital: 'Tegucigalpa',
                 languages: ['Spanish'],
-                population: 8576532,
-                flag: 'https://restcountries.eu/data/hnd.svg',
-                currency: 'Honduran lempira'
+                population: 8576532
             },
             {
                 name: 'Hong Kong',
-                capital: 'City of Victoria',
                 languages: ['English', 'Chinese'],
-                population: 7324300,
-                flag: 'https://restcountries.eu/data/hkg.svg',
-                currency: 'Hong Kong dollar'
+                population: 7324300
             },
             {
                 name: 'Hungary',
-                capital: 'Budapest',
                 languages: ['Hungarian'],
-                population: 9823000,
-                flag: 'https://restcountries.eu/data/hun.svg',
-                currency: 'Hungarian forint'
+                population: 9823000
             },
             {
                 name: 'Iceland',
-                capital: 'Reykjavík',
                 languages: ['Icelandic'],
-                population: 334300,
-                flag: 'https://restcountries.eu/data/isl.svg',
-                currency: 'Icelandic króna'
+                population: 334300
             },
             {
                 name: 'India',
-                capital: 'New Delhi',
                 languages: ['Hindi', 'English'],
-                population: 1295210000,
-                flag: 'https://restcountries.eu/data/ind.svg',
-                currency: 'Indian rupee'
+                population: 1295210000
             },
             {
                 name: 'Indonesia',
-                capital: 'Jakarta',
                 languages: ['Indonesian'],
-                population: 258705000,
-                flag: 'https://restcountries.eu/data/idn.svg',
-                currency: 'Indonesian rupiah'
+                population: 258705000
             },
             {
                 name: "Côte d'Ivoire",
-                capital: 'Yamoussoukro',
                 languages: ['French'],
-                population: 22671331,
-                flag: 'https://restcountries.eu/data/civ.svg',
-                currency: 'West African CFA franc'
+                population: 22671331
             },
             {
                 name: 'Iran (Islamic Republic of)',
-                capital: 'Tehran',
                 languages: ['Persian (Farsi)'],
-                population: 79369900,
-                flag: 'https://restcountries.eu/data/irn.svg',
-                currency: 'Iranian rial'
+                population: 79369900
             },
             {
                 name: 'Iraq',
-                capital: 'Baghdad',
                 languages: ['Arabic', 'Kurdish'],
-                population: 37883543,
-                flag: 'https://restcountries.eu/data/irq.svg',
-                currency: 'Iraqi dinar'
+                population: 37883543
             },
             {
                 name: 'Ireland',
-                capital: 'Dublin',
                 languages: ['Irish', 'English'],
-                population: 6378000,
-                flag: 'https://restcountries.eu/data/irl.svg',
-                currency: 'Euro'
+                population: 6378000
             },
             {
                 name: 'Isle of Man',
-                capital: 'Douglas',
                 languages: ['English', 'Manx'],
-                population: 84497,
-                flag: 'https://restcountries.eu/data/imn.svg',
-                currency: 'British pound'
+                population: 84497
             },
             {
                 name: 'Israel',
-                capital: 'Jerusalem',
                 languages: ['Hebrew (modern)', 'Arabic'],
-                population: 8527400,
-                flag: 'https://restcountries.eu/data/isr.svg',
-                currency: 'Israeli new shekel'
+                population: 8527400
             },
             {
                 name: 'Italy',
-                capital: 'Rome',
                 languages: ['Italian'],
-                population: 60665551,
-                flag: 'https://restcountries.eu/data/ita.svg',
-                currency: 'Euro'
+                population: 60665551
             },
             {
                 name: 'Jamaica',
-                capital: 'Kingston',
                 languages: ['English'],
-                population: 2723246,
-                flag: 'https://restcountries.eu/data/jam.svg',
-                currency: 'Jamaican dollar'
+                population: 2723246
             },
             {
                 name: 'Japan',
-                capital: 'Tokyo',
                 languages: ['Japanese'],
-                population: 126960000,
-                flag: 'https://restcountries.eu/data/jpn.svg',
-                currency: 'Japanese yen'
+                population: 126960000
             },
             {
                 name: 'Jersey',
-                capital: 'Saint Helier',
                 languages: ['English', 'French'],
-                population: 100800,
-                flag: 'https://restcountries.eu/data/jey.svg',
-                currency: 'British pound'
+                population: 100800
             },
             {
                 name: 'Jordan',
-                capital: 'Amman',
                 languages: ['Arabic'],
-                population: 9531712,
-                flag: 'https://restcountries.eu/data/jor.svg',
-                currency: 'Jordanian dinar'
+                population: 9531712
             },
             {
                 name: 'Kazakhstan',
-                capital: 'Astana',
                 languages: ['Kazakh', 'Russian'],
-                population: 17753200,
-                flag: 'https://restcountries.eu/data/kaz.svg',
-                currency: 'Kazakhstani tenge'
+                population: 17753200
             },
             {
                 name: 'Kenya',
-                capital: 'Nairobi',
                 languages: ['English', 'Swahili'],
-                population: 47251000,
-                flag: 'https://restcountries.eu/data/ken.svg',
-                currency: 'Kenyan shilling'
+                population: 47251000
             },
             {
                 name: 'Kiribati',
-                capital: 'South Tarawa',
                 languages: ['English'],
-                population: 113400,
-                flag: 'https://restcountries.eu/data/kir.svg',
-                currency: 'Australian dollar'
+                population: 113400
             },
             {
                 name: 'Kuwait',
-                capital: 'Kuwait City',
                 languages: ['Arabic'],
-                population: 4183658,
-                flag: 'https://restcountries.eu/data/kwt.svg',
-                currency: 'Kuwaiti dinar'
+                population: 4183658
             },
             {
                 name: 'Kyrgyzstan',
-                capital: 'Bishkek',
                 languages: ['Kyrgyz', 'Russian'],
-                population: 6047800,
-                flag: 'https://restcountries.eu/data/kgz.svg',
-                currency: 'Kyrgyzstani som'
+                population: 6047800
             },
             {
                 name: "Lao People's Democratic Republic",
-                capital: 'Vientiane',
                 languages: ['Lao'],
-                population: 6492400,
-                flag: 'https://restcountries.eu/data/lao.svg',
-                currency: 'Lao kip'
+                population: 6492400
             },
             {
                 name: 'Latvia',
-                capital: 'Riga',
                 languages: ['Latvian'],
-                population: 1961600,
-                flag: 'https://restcountries.eu/data/lva.svg',
-                currency: 'Euro'
+                population: 1961600
             },
             {
                 name: 'Lebanon',
-                capital: 'Beirut',
                 languages: ['Arabic', 'French'],
-                population: 5988000,
-                flag: 'https://restcountries.eu/data/lbn.svg',
-                currency: 'Lebanese pound'
+                population: 5988000
             },
             {
                 name: 'Lesotho',
-                capital: 'Maseru',
                 languages: ['English', 'Southern Sotho'],
-                population: 1894194,
-                flag: 'https://restcountries.eu/data/lso.svg',
-                currency: 'Lesotho loti'
+                population: 1894194
             },
             {
                 name: 'Liberia',
-                capital: 'Monrovia',
                 languages: ['English'],
-                population: 4615000,
-                flag: 'https://restcountries.eu/data/lbr.svg',
-                currency: 'Liberian dollar'
+                population: 4615000
             },
             {
                 name: 'Libya',
-                capital: 'Tripoli',
                 languages: ['Arabic'],
-                population: 6385000,
-                flag: 'https://restcountries.eu/data/lby.svg',
-                currency: 'Libyan dinar'
+                population: 6385000
             },
             {
                 name: 'Liechtenstein',
-                capital: 'Vaduz',
                 languages: ['German'],
-                population: 37623,
-                flag: 'https://restcountries.eu/data/lie.svg',
-                currency: 'Swiss franc'
+                population: 37623
             },
             {
                 name: 'Lithuania',
-                capital: 'Vilnius',
                 languages: ['Lithuanian'],
-                population: 2872294,
-                flag: 'https://restcountries.eu/data/ltu.svg',
-                currency: 'Euro'
+                population: 2872294
             },
             {
                 name: 'Luxembourg',
-                capital: 'Luxembourg',
                 languages: ['French', 'German', 'Luxembourgish'],
-                population: 576200,
-                flag: 'https://restcountries.eu/data/lux.svg',
-                currency: 'Euro'
+                population: 576200
             },
             {
                 name: 'Macao',
-                capital: '',
                 languages: ['Chinese', 'Portuguese'],
-                population: 649100,
-                flag: 'https://restcountries.eu/data/mac.svg',
-                currency: 'Macanese pataca'
+                population: 649100
             },
             {
                 name: 'Macedonia (the former Yugoslav Republic of)',
-                capital: 'Skopje',
                 languages: ['Macedonian'],
-                population: 2058539,
-                flag: 'https://restcountries.eu/data/mkd.svg',
-                currency: 'Macedonian denar'
+                population: 2058539
             },
             {
                 name: 'Madagascar',
-                capital: 'Antananarivo',
                 languages: ['French', 'Malagasy'],
-                population: 22434363,
-                flag: 'https://restcountries.eu/data/mdg.svg',
-                currency: 'Malagasy ariary'
+                population: 22434363
             },
             {
                 name: 'Malawi',
-                capital: 'Lilongwe',
                 languages: ['English', 'Chichewa'],
-                population: 16832910,
-                flag: 'https://restcountries.eu/data/mwi.svg',
-                currency: 'Malawian kwacha'
+                population: 16832910
             },
             {
                 name: 'Malaysia',
-                capital: 'Kuala Lumpur',
                 languages: ['Malaysian'],
-                population: 31405416,
-                flag: 'https://restcountries.eu/data/mys.svg',
-                currency: 'Malaysian ringgit'
+                population: 31405416
             },
             {
                 name: 'Maldives',
-                capital: 'Malé',
                 languages: ['Divehi'],
-                population: 344023,
-                flag: 'https://restcountries.eu/data/mdv.svg',
-                currency: 'Maldivian rufiyaa'
+                population: 344023
             },
             {
                 name: 'Mali',
-                capital: 'Bamako',
                 languages: ['French'],
-                population: 18135000,
-                flag: 'https://restcountries.eu/data/mli.svg',
-                currency: 'West African CFA franc'
+                population: 18135000
             },
             {
                 name: 'Malta',
-                capital: 'Valletta',
                 languages: ['Maltese', 'English'],
-                population: 425384,
-                flag: 'https://restcountries.eu/data/mlt.svg',
-                currency: 'Euro'
+                population: 425384
             },
             {
                 name: 'Marshall Islands',
-                capital: 'Majuro',
                 languages: ['English', 'Marshallese'],
-                population: 54880,
-                flag: 'https://restcountries.eu/data/mhl.svg',
-                currency: 'United States dollar'
+                population: 54880
             },
             {
                 name: 'Martinique',
-                capital: 'Fort-de-France',
                 languages: ['French'],
-                population: 378243,
-                flag: 'https://restcountries.eu/data/mtq.svg',
-                currency: 'Euro'
+                population: 378243
             },
             {
                 name: 'Mauritania',
-                capital: 'Nouakchott',
                 languages: ['Arabic'],
-                population: 3718678,
-                flag: 'https://restcountries.eu/data/mrt.svg',
-                currency: 'Mauritanian ouguiya'
+                population: 3718678
             },
             {
                 name: 'Mauritius',
-                capital: 'Port Louis',
                 languages: ['English'],
-                population: 1262879,
-                flag: 'https://restcountries.eu/data/mus.svg',
-                currency: 'Mauritian rupee'
+                population: 1262879
             },
             {
                 name: 'Mayotte',
-                capital: 'Mamoudzou',
                 languages: ['French'],
-                population: 226915,
-                flag: 'https://restcountries.eu/data/myt.svg',
-                currency: 'Euro'
+                population: 226915
             },
             {
                 name: 'Mexico',
-                capital: 'Mexico City',
                 languages: ['Spanish'],
-                population: 122273473,
-                flag: 'https://restcountries.eu/data/mex.svg',
-                currency: 'Mexican peso'
+                population: 122273473
             },
             {
                 name: 'Micronesia (Federated States of)',
-                capital: 'Palikir',
                 languages: ['English'],
-                population: 102800,
-                flag: 'https://restcountries.eu/data/fsm.svg',
-                currency: '[D]'
+                population: 102800
             },
             {
                 name: 'Moldova (Republic of)',
-                capital: 'Chișinău',
                 languages: ['Romanian'],
-                population: 3553100,
-                flag: 'https://restcountries.eu/data/mda.svg',
-                currency: 'Moldovan leu'
+                population: 3553100
             },
             {
                 name: 'Monaco',
-                capital: 'Monaco',
                 languages: ['French'],
-                population: 38400,
-                flag: 'https://restcountries.eu/data/mco.svg',
-                currency: 'Euro'
+                population: 38400
             },
             {
                 name: 'Mongolia',
-                capital: 'Ulan Bator',
                 languages: ['Mongolian'],
-                population: 3093100,
-                flag: 'https://restcountries.eu/data/mng.svg',
-                currency: 'Mongolian tögrög'
+                population: 3093100
             },
             {
                 name: 'Montenegro',
-                capital: 'Podgorica',
                 languages: ['Serbian', 'Bosnian', 'Albanian', 'Croatian'],
-                population: 621810,
-                flag: 'https://restcountries.eu/data/mne.svg',
-                currency: 'Euro'
+                population: 621810
             },
             {
                 name: 'Montserrat',
-                capital: 'Plymouth',
                 languages: ['English'],
-                population: 4922,
-                flag: 'https://restcountries.eu/data/msr.svg',
-                currency: 'East Caribbean dollar'
+                population: 4922
             },
             {
                 name: 'Morocco',
-                capital: 'Rabat',
                 languages: ['Arabic'],
-                population: 33337529,
-                flag: 'https://restcountries.eu/data/mar.svg',
-                currency: 'Moroccan dirham'
+                population: 33337529
             },
             {
                 name: 'Mozambique',
-                capital: 'Maputo',
                 languages: ['Portuguese'],
-                population: 26423700,
-                flag: 'https://restcountries.eu/data/moz.svg',
-                currency: 'Mozambican metical'
+                population: 26423700
             },
             {
                 name: 'Myanmar',
-                capital: 'Naypyidaw',
                 languages: ['Burmese'],
-                population: 51419420,
-                flag: 'https://restcountries.eu/data/mmr.svg',
-                currency: 'Burmese kyat'
+                population: 51419420
             },
             {
                 name: 'Namibia',
-                capital: 'Windhoek',
                 languages: ['English', 'Afrikaans'],
-                population: 2324388,
-                flag: 'https://restcountries.eu/data/nam.svg',
-                currency: 'Namibian dollar'
+                population: 2324388
             },
             {
                 name: 'Nauru',
-                capital: 'Yaren',
                 languages: ['English', 'Nauruan'],
-                population: 10084,
-                flag: 'https://restcountries.eu/data/nru.svg',
-                currency: 'Australian dollar'
+                population: 10084
             },
             {
                 name: 'Nepal',
-                capital: 'Kathmandu',
                 languages: ['Nepali'],
-                population: 28431500,
-                flag: 'https://restcountries.eu/data/npl.svg',
-                currency: 'Nepalese rupee'
+                population: 28431500
             },
             {
                 name: 'Netherlands',
-                capital: 'Amsterdam',
                 languages: ['Dutch'],
-                population: 17019800,
-                flag: 'https://restcountries.eu/data/nld.svg',
-                currency: 'Euro'
+                population: 17019800
             },
             {
                 name: 'New Caledonia',
-                capital: 'Nouméa',
                 languages: ['French'],
-                population: 268767,
-                flag: 'https://restcountries.eu/data/ncl.svg',
-                currency: 'CFP franc'
+                population: 268767
             },
             {
                 name: 'New Zealand',
-                capital: 'Wellington',
                 languages: ['English', 'Māori'],
-                population: 4697854,
-                flag: 'https://restcountries.eu/data/nzl.svg',
-                currency: 'New Zealand dollar'
+                population: 4697854
             },
             {
                 name: 'Nicaragua',
-                capital: 'Managua',
                 languages: ['Spanish'],
-                population: 6262703,
-                flag: 'https://restcountries.eu/data/nic.svg',
-                currency: 'Nicaraguan córdoba'
+                population: 6262703
             },
             {
                 name: 'Niger',
-                capital: 'Niamey',
                 languages: ['French'],
-                population: 20715000,
-                flag: 'https://restcountries.eu/data/ner.svg',
-                currency: 'West African CFA franc'
+                population: 20715000
             },
             {
                 name: 'Nigeria',
-                capital: 'Abuja',
                 languages: ['English'],
-                population: 186988000,
-                flag: 'https://restcountries.eu/data/nga.svg',
-                currency: 'Nigerian naira'
+                population: 186988000
             },
             {
                 name: 'Niue',
-                capital: 'Alofi',
                 languages: ['English'],
-                population: 1470,
-                flag: 'https://restcountries.eu/data/niu.svg',
-                currency: 'New Zealand dollar'
+                population: 1470
             },
             {
                 name: 'Norfolk Island',
-                capital: 'Kingston',
                 languages: ['English'],
-                population: 2302,
-                flag: 'https://restcountries.eu/data/nfk.svg',
-                currency: 'Australian dollar'
+                population: 2302
             },
             {
                 name: "Korea (Democratic People's Republic of)",
-                capital: 'Pyongyang',
                 languages: ['Korean'],
-                population: 25281000,
-                flag: 'https://restcountries.eu/data/prk.svg',
-                currency: 'North Korean won'
+                population: 25281000
             },
             {
                 name: 'Northern Mariana Islands',
-                capital: 'Saipan',
                 languages: ['English', 'Chamorro'],
-                population: 56940,
-                flag: 'https://restcountries.eu/data/mnp.svg',
-                currency: 'United States dollar'
+                population: 56940
             },
             {
                 name: 'Norway',
-                capital: 'Oslo',
                 languages: ['Norwegian', 'Norwegian Bokmål', 'Norwegian Nynorsk'],
-                population: 5223256,
-                flag: 'https://restcountries.eu/data/nor.svg',
-                currency: 'Norwegian krone'
+                population: 5223256
             },
             {
                 name: 'Oman',
-                capital: 'Muscat',
                 languages: ['Arabic'],
-                population: 4420133,
-                flag: 'https://restcountries.eu/data/omn.svg',
-                currency: 'Omani rial'
+                population: 4420133
             },
             {
                 name: 'Pakistan',
-                capital: 'Islamabad',
                 languages: ['English', 'Urdu'],
-                population: 194125062,
-                flag: 'https://restcountries.eu/data/pak.svg',
-                currency: 'Pakistani rupee'
+                population: 194125062
             },
             {
                 name: 'Palau',
-                capital: 'Ngerulmud',
                 languages: ['English'],
-                population: 17950,
-                flag: 'https://restcountries.eu/data/plw.svg',
-                currency: '[E]'
+                population: 17950
             },
             {
                 name: 'Palestine, State of',
-                capital: 'Ramallah',
                 languages: ['Arabic'],
-                population: 4682467,
-                flag: 'https://restcountries.eu/data/pse.svg',
-                currency: 'Israeli new sheqel'
+                population: 4682467
             },
             {
                 name: 'Panama',
-                capital: 'Panama City',
                 languages: ['Spanish'],
-                population: 3814672,
-                flag: 'https://restcountries.eu/data/pan.svg',
-                currency: 'Panamanian balboa'
+                population: 3814672
             },
             {
                 name: 'Papua New Guinea',
-                capital: 'Port Moresby',
                 languages: ['English'],
-                population: 8083700,
-                flag: 'https://restcountries.eu/data/png.svg',
-                currency: 'Papua New Guinean kina'
+                population: 8083700
             },
             {
                 name: 'Paraguay',
-                capital: 'Asunción',
                 languages: ['Spanish', 'Guaraní'],
-                population: 6854536,
-                flag: 'https://restcountries.eu/data/pry.svg',
-                currency: 'Paraguayan guaraní'
+                population: 6854536
             },
             {
                 name: 'Peru',
-                capital: 'Lima',
                 languages: ['Spanish'],
-                population: 31488700,
-                flag: 'https://restcountries.eu/data/per.svg',
-                currency: 'Peruvian sol'
+                population: 31488700
             },
             {
                 name: 'Philippines',
-                capital: 'Manila',
                 languages: ['English'],
-                population: 103279800,
-                flag: 'https://restcountries.eu/data/phl.svg',
-                currency: 'Philippine peso'
+                population: 103279800
             },
             {
                 name: 'Pitcairn',
-                capital: 'Adamstown',
                 languages: ['English'],
-                population: 56,
-                flag: 'https://restcountries.eu/data/pcn.svg',
-                currency: 'New Zealand dollar'
+                population: 56
             },
             {
                 name: 'Poland',
-                capital: 'Warsaw',
                 languages: ['Polish'],
-                population: 38437239,
-                flag: 'https://restcountries.eu/data/pol.svg',
-                currency: 'Polish złoty'
+                population: 38437239
             },
             {
                 name: 'Portugal',
-                capital: 'Lisbon',
                 languages: ['Portuguese'],
-                population: 10374822,
-                flag: 'https://restcountries.eu/data/prt.svg',
-                currency: 'Euro'
+                population: 10374822
             },
             {
                 name: 'Puerto Rico',
-                capital: 'San Juan',
                 languages: ['Spanish', 'English'],
-                population: 3474182,
-                flag: 'https://restcountries.eu/data/pri.svg',
-                currency: 'United States dollar'
+                population: 3474182
             },
             {
                 name: 'Qatar',
-                capital: 'Doha',
                 languages: ['Arabic'],
-                population: 2587564,
-                flag: 'https://restcountries.eu/data/qat.svg',
-                currency: 'Qatari riyal'
+                population: 2587564
             },
             {
                 name: 'Republic of Kosovo',
-                capital: 'Pristina',
                 languages: ['Albanian', 'Serbian'],
-                population: 1733842,
-                flag: 'https://restcountries.eu/data/kos.svg',
-                currency: 'Euro'
+                population: 1733842
             },
             {
                 name: 'Réunion',
-                capital: 'Saint-Denis',
                 languages: ['French'],
-                population: 840974,
-                flag: 'https://restcountries.eu/data/reu.svg',
-                currency: 'Euro'
+                population: 840974
             },
             {
                 name: 'Romania',
-                capital: 'Bucharest',
                 languages: ['Romanian'],
-                population: 19861408,
-                flag: 'https://restcountries.eu/data/rou.svg',
-                currency: 'Romanian leu'
+                population: 19861408
             },
             {
                 name: 'Russian Federation',
-                capital: 'Moscow',
                 languages: ['Russian'],
-                population: 146599183,
-                flag: 'https://restcountries.eu/data/rus.svg',
-                currency: 'Russian ruble'
+                population: 146599183
             },
             {
                 name: 'Rwanda',
-                capital: 'Kigali',
                 languages: ['Kinyarwanda', 'English', 'French'],
-                population: 11553188,
-                flag: 'https://restcountries.eu/data/rwa.svg',
-                currency: 'Rwandan franc'
+                population: 11553188
             },
             {
                 name: 'Saint Barthélemy',
-                capital: 'Gustavia',
                 languages: ['French'],
-                population: 9417,
-                flag: 'https://restcountries.eu/data/blm.svg',
-                currency: 'Euro'
+                population: 9417
             },
             {
                 name: 'Saint Helena, Ascension and Tristan da Cunha',
-                capital: 'Jamestown',
                 languages: ['English'],
-                population: 4255,
-                flag: 'https://restcountries.eu/data/shn.svg',
-                currency: 'Saint Helena pound'
+                population: 4255
             },
             {
                 name: 'Saint Kitts and Nevis',
-                capital: 'Basseterre',
                 languages: ['English'],
-                population: 46204,
-                flag: 'https://restcountries.eu/data/kna.svg',
-                currency: 'East Caribbean dollar'
+                population: 46204
             },
             {
                 name: 'Saint Lucia',
-                capital: 'Castries',
                 languages: ['English'],
-                population: 186000,
-                flag: 'https://restcountries.eu/data/lca.svg',
-                currency: 'East Caribbean dollar'
+                population: 186000
             },
             {
                 name: 'Saint Martin (French part)',
-                capital: 'Marigot',
                 languages: ['English', 'French', 'Dutch'],
-                population: 36979,
-                flag: 'https://restcountries.eu/data/maf.svg',
-                currency: 'Euro'
+                population: 36979
             },
             {
                 name: 'Saint Pierre and Miquelon',
-                capital: 'Saint-Pierre',
                 languages: ['French'],
-                population: 6069,
-                flag: 'https://restcountries.eu/data/spm.svg',
-                currency: 'Euro'
+                population: 6069
             },
             {
                 name: 'Saint Vincent and the Grenadines',
-                capital: 'Kingstown',
                 languages: ['English'],
-                population: 109991,
-                flag: 'https://restcountries.eu/data/vct.svg',
-                currency: 'East Caribbean dollar'
+                population: 109991
             },
             {
                 name: 'Samoa',
-                capital: 'Apia',
                 languages: ['Samoan', 'English'],
-                population: 194899,
-                flag: 'https://restcountries.eu/data/wsm.svg',
-                currency: 'Samoan tālā'
+                population: 194899
             },
             {
                 name: 'San Marino',
-                capital: 'City of San Marino',
                 languages: ['Italian'],
-                population: 33005,
-                flag: 'https://restcountries.eu/data/smr.svg',
-                currency: 'Euro'
+                population: 33005
             },
             {
                 name: 'Sao Tome and Principe',
-                capital: 'São Tomé',
                 languages: ['Portuguese'],
-                population: 187356,
-                flag: 'https://restcountries.eu/data/stp.svg',
-                currency: 'São Tomé and Príncipe dobra'
+                population: 187356
             },
             {
                 name: 'Saudi Arabia',
-                capital: 'Riyadh',
                 languages: ['Arabic'],
-                population: 32248200,
-                flag: 'https://restcountries.eu/data/sau.svg',
-                currency: 'Saudi riyal'
+                population: 32248200
             },
             {
                 name: 'Senegal',
-                capital: 'Dakar',
                 languages: ['French'],
-                population: 14799859,
-                flag: 'https://restcountries.eu/data/sen.svg',
-                currency: 'West African CFA franc'
+                population: 14799859
             },
             {
                 name: 'Serbia',
-                capital: 'Belgrade',
                 languages: ['Serbian'],
-                population: 7076372,
-                flag: 'https://restcountries.eu/data/srb.svg',
-                currency: 'Serbian dinar'
+                population: 7076372
             },
             {
                 name: 'Seychelles',
-                capital: 'Victoria',
                 languages: ['French', 'English'],
-                population: 91400,
-                flag: 'https://restcountries.eu/data/syc.svg',
-                currency: 'Seychellois rupee'
+                population: 91400
             },
             {
                 name: 'Sierra Leone',
-                capital: 'Freetown',
                 languages: ['English'],
-                population: 7075641,
-                flag: 'https://restcountries.eu/data/sle.svg',
-                currency: 'Sierra Leonean leone'
+                population: 7075641
             },
             {
                 name: 'Singapore',
-                capital: 'Singapore',
                 languages: ['English', 'Malay', 'Tamil', 'Chinese'],
-                population: 5535000,
-                flag: 'https://restcountries.eu/data/sgp.svg',
-                currency: 'Brunei dollar'
+                population: 5535000
             },
             {
                 name: 'Sint Maarten (Dutch part)',
-                capital: 'Philipsburg',
                 languages: ['Dutch', 'English'],
-                population: 38247,
-                flag: 'https://restcountries.eu/data/sxm.svg',
-                currency: 'Netherlands Antillean guilder'
+                population: 38247
             },
             {
                 name: 'Slovakia',
-                capital: 'Bratislava',
                 languages: ['Slovak'],
-                population: 5426252,
-                flag: 'https://restcountries.eu/data/svk.svg',
-                currency: 'Euro'
+                population: 5426252
             },
             {
                 name: 'Slovenia',
-                capital: 'Ljubljana',
                 languages: ['Slovene'],
-                population: 2064188,
-                flag: 'https://restcountries.eu/data/svn.svg',
-                currency: 'Euro'
+                population: 2064188
             },
             {
                 name: 'Solomon Islands',
-                capital: 'Honiara',
                 languages: ['English'],
-                population: 642000,
-                flag: 'https://restcountries.eu/data/slb.svg',
-                currency: 'Solomon Islands dollar'
+                population: 642000
             },
             {
                 name: 'Somalia',
-                capital: 'Mogadishu',
                 languages: ['Somali', 'Arabic'],
-                population: 11079000,
-                flag: 'https://restcountries.eu/data/som.svg',
-                currency: 'Somali shilling'
+                population: 11079000
             },
             {
                 name: 'South Africa',
-                capital: 'Pretoria',
                 languages: [
                     'Afrikaans',
                     'English',
@@ -1692,342 +1147,380 @@
                     'Xhosa',
                     'Zulu'
                 ],
-                population: 55653654,
-                flag: 'https://restcountries.eu/data/zaf.svg',
-                currency: 'South African rand'
+                population: 55653654
             },
             {
                 name: 'South Georgia and the South Sandwich Islands',
-                capital: 'King Edward Point',
                 languages: ['English'],
-                population: 30,
-                flag: 'https://restcountries.eu/data/sgs.svg',
-                currency: 'British pound'
+                population: 30
             },
             {
                 name: 'Korea (Republic of)',
-                capital: 'Seoul',
                 languages: ['Korean'],
-                population: 50801405,
-                flag: 'https://restcountries.eu/data/kor.svg',
-                currency: 'South Korean won'
+                population: 50801405
             },
             {
                 name: 'South Sudan',
-                capital: 'Juba',
                 languages: ['English'],
-                population: 12131000,
-                flag: 'https://restcountries.eu/data/ssd.svg',
-                currency: 'South Sudanese pound'
+                population: 12131000
             },
             {
                 name: 'Spain',
-                capital: 'Madrid',
                 languages: ['Spanish'],
-                population: 46438422,
-                flag: 'https://restcountries.eu/data/esp.svg',
-                currency: 'Euro'
+                population: 46438422
             },
             {
                 name: 'Sri Lanka',
-                capital: 'Colombo',
                 languages: ['Sinhalese', 'Tamil'],
-                population: 20966000,
-                flag: 'https://restcountries.eu/data/lka.svg',
-                currency: 'Sri Lankan rupee'
+                population: 20966000
             },
             {
                 name: 'Sudan',
-                capital: 'Khartoum',
                 languages: ['Arabic', 'English'],
-                population: 39598700,
-                flag: 'https://restcountries.eu/data/sdn.svg',
-                currency: 'Sudanese pound'
+                population: 39598700
             },
             {
                 name: 'Suriname',
-                capital: 'Paramaribo',
                 languages: ['Dutch'],
-                population: 541638,
-                flag: 'https://restcountries.eu/data/sur.svg',
-                currency: 'Surinamese dollar'
+                population: 541638
             },
             {
                 name: 'Svalbard and Jan Mayen',
-                capital: 'Longyearbyen',
                 languages: ['Norwegian'],
-                population: 2562,
-                flag: 'https://restcountries.eu/data/sjm.svg',
-                currency: 'Norwegian krone'
+                population: 2562
             },
             {
                 name: 'Swaziland',
-                capital: 'Lobamba',
                 languages: ['English', 'Swati'],
-                population: 1132657,
-                flag: 'https://restcountries.eu/data/swz.svg',
-                currency: 'Swazi lilangeni'
+                population: 1132657
             },
             {
                 name: 'Sweden',
-                capital: 'Stockholm',
                 languages: ['Swedish'],
-                population: 9894888,
-                flag: 'https://restcountries.eu/data/swe.svg',
-                currency: 'Swedish krona'
+                population: 9894888
             },
             {
                 name: 'Switzerland',
-                capital: 'Bern',
                 languages: ['German', 'French', 'Italian'],
-                population: 8341600,
-                flag: 'https://restcountries.eu/data/che.svg',
-                currency: 'Swiss franc'
+                population: 8341600
             },
             {
                 name: 'Syrian Arab Republic',
-                capital: 'Damascus',
                 languages: ['Arabic'],
-                population: 18564000,
-                flag: 'https://restcountries.eu/data/syr.svg',
-                currency: 'Syrian pound'
+                population: 18564000
             },
             {
                 name: 'Taiwan',
-                capital: 'Taipei',
                 languages: ['Chinese'],
-                population: 23503349,
-                flag: 'https://restcountries.eu/data/twn.svg',
-                currency: 'New Taiwan dollar'
+                population: 23503349
             },
             {
                 name: 'Tajikistan',
-                capital: 'Dushanbe',
                 languages: ['Tajik', 'Russian'],
-                population: 8593600,
-                flag: 'https://restcountries.eu/data/tjk.svg',
-                currency: 'Tajikistani somoni'
+                population: 8593600
             },
             {
                 name: 'Tanzania, United Republic of',
-                capital: 'Dodoma',
                 languages: ['Swahili', 'English'],
-                population: 55155000,
-                flag: 'https://restcountries.eu/data/tza.svg',
-                currency: 'Tanzanian shilling'
+                population: 55155000
             },
             {
                 name: 'Thailand',
-                capital: 'Bangkok',
                 languages: ['Thai'],
-                population: 65327652,
-                flag: 'https://restcountries.eu/data/tha.svg',
-                currency: 'Thai baht'
+                population: 65327652
             },
             {
                 name: 'Timor-Leste',
-                capital: 'Dili',
                 languages: ['Portuguese'],
-                population: 1167242,
-                flag: 'https://restcountries.eu/data/tls.svg',
-                currency: 'United States dollar'
+                population: 1167242
             },
             {
                 name: 'Togo',
-                capital: 'Lomé',
                 languages: ['French'],
-                population: 7143000,
-                flag: 'https://restcountries.eu/data/tgo.svg',
-                currency: 'West African CFA franc'
+                population: 7143000
             },
             {
                 name: 'Tokelau',
-                capital: 'Fakaofo',
                 languages: ['English'],
-                population: 1411,
-                flag: 'https://restcountries.eu/data/tkl.svg',
-                currency: 'New Zealand dollar'
+                population: 1411
             },
             {
                 name: 'Tonga',
-                capital: "Nuku'alofa",
                 languages: ['English', 'Tonga (Tonga Islands)'],
-                population: 103252,
-                flag: 'https://restcountries.eu/data/ton.svg',
-                currency: 'Tongan paʻanga'
+                population: 103252
             },
             {
                 name: 'Trinidad and Tobago',
-                capital: 'Port of Spain',
                 languages: ['English'],
-                population: 1349667,
-                flag: 'https://restcountries.eu/data/tto.svg',
-                currency: 'Trinidad and Tobago dollar'
+                population: 1349667
             },
             {
                 name: 'Tunisia',
-                capital: 'Tunis',
                 languages: ['Arabic'],
-                population: 11154400,
-                flag: 'https://restcountries.eu/data/tun.svg',
-                currency: 'Tunisian dinar'
+                population: 11154400
             },
             {
                 name: 'Turkey',
-                capital: 'Ankara',
                 languages: ['Turkish'],
-                population: 78741053,
-                flag: 'https://restcountries.eu/data/tur.svg',
-                currency: 'Turkish lira'
+                population: 78741053
             },
             {
                 name: 'Turkmenistan',
-                capital: 'Ashgabat',
                 languages: ['Turkmen', 'Russian'],
-                population: 4751120,
-                flag: 'https://restcountries.eu/data/tkm.svg',
-                currency: 'Turkmenistan manat'
+                population: 4751120
             },
             {
                 name: 'Turks and Caicos Islands',
-                capital: 'Cockburn Town',
                 languages: ['English'],
-                population: 31458,
-                flag: 'https://restcountries.eu/data/tca.svg',
-                currency: 'United States dollar'
+                population: 31458
             },
             {
                 name: 'Tuvalu',
-                capital: 'Funafuti',
                 languages: ['English'],
-                population: 10640,
-                flag: 'https://restcountries.eu/data/tuv.svg',
-                currency: 'Australian dollar'
+                population: 10640
             },
             {
                 name: 'Uganda',
-                capital: 'Kampala',
                 languages: ['English', 'Swahili'],
-                population: 33860700,
-                flag: 'https://restcountries.eu/data/uga.svg',
-                currency: 'Ugandan shilling'
+                population: 33860700
             },
             {
                 name: 'Ukraine',
-                capital: 'Kiev',
                 languages: ['Ukrainian'],
-                population: 42692393,
-                flag: 'https://restcountries.eu/data/ukr.svg',
-                currency: 'Ukrainian hryvnia'
+                population: 42692393
             },
             {
                 name: 'United Arab Emirates',
-                capital: 'Abu Dhabi',
                 languages: ['Arabic'],
-                population: 9856000,
-                flag: 'https://restcountries.eu/data/are.svg',
-                currency: 'United Arab Emirates dirham'
+                population: 9856000
             },
             {
                 name: 'United Kingdom of Great Britain and Northern Ireland',
-                capital: 'London',
                 languages: ['English'],
-                population: 65110000,
-                flag: 'https://restcountries.eu/data/gbr.svg',
-                currency: 'British pound'
+                population: 65110000
             },
             {
                 name: 'United States of America',
-                capital: 'Washington, D.C.',
                 languages: ['English'],
-                population: 323947000,
-                flag: 'https://restcountries.eu/data/usa.svg',
-                currency: 'United States dollar'
+                population: 323947000
             },
             {
                 name: 'Uruguay',
-                capital: 'Montevideo',
                 languages: ['Spanish'],
-                population: 3480222,
-                flag: 'https://restcountries.eu/data/ury.svg',
-                currency: 'Uruguayan peso'
+                population: 3480222
             },
             {
                 name: 'Uzbekistan',
-                capital: 'Tashkent',
                 languages: ['Uzbek', 'Russian'],
-                population: 31576400,
-                flag: 'https://restcountries.eu/data/uzb.svg',
-                currency: "Uzbekistani so'm"
+                population: 31576400
             },
             {
                 name: 'Vanuatu',
-                capital: 'Port Vila',
                 languages: ['Bislama', 'English', 'French'],
-                population: 277500,
-                flag: 'https://restcountries.eu/data/vut.svg',
-                currency: 'Vanuatu vatu'
+                population: 277500
             },
             {
                 name: 'Venezuela (Bolivarian Republic of)',
-                capital: 'Caracas',
                 languages: ['Spanish'],
-                population: 31028700,
-                flag: 'https://restcountries.eu/data/ven.svg',
-                currency: 'Venezuelan bolívar'
+                population: 31028700
             },
             {
                 name: 'Viet Nam',
-                capital: 'Hanoi',
                 languages: ['Vietnamese'],
-                population: 92700000,
-                flag: 'https://restcountries.eu/data/vnm.svg',
-                currency: 'Vietnamese đồng'
+                population: 92700000
             },
             {
                 name: 'Wallis and Futuna',
-                capital: 'Mata-Utu',
                 languages: ['French'],
-                population: 11750,
-                flag: 'https://restcountries.eu/data/wlf.svg',
-                currency: 'CFP franc'
+                population: 11750
             },
             {
                 name: 'Western Sahara',
-                capital: 'El Aaiún',
                 languages: ['Spanish'],
-                population: 510713,
-                flag: 'https://restcountries.eu/data/esh.svg',
-                currency: 'Moroccan dirham'
+                population: 510713
             },
             {
                 name: 'Yemen',
-                capital: "Sana'a",
                 languages: ['Arabic'],
-                population: 27478000,
-                flag: 'https://restcountries.eu/data/yem.svg',
-                currency: 'Yemeni rial'
+                population: 27478000
             },
             {
                 name: 'Zambia',
-                capital: 'Lusaka',
                 languages: ['English'],
-                population: 15933883,
-                flag: 'https://restcountries.eu/data/zmb.svg',
-                currency: 'Zambian kwacha'
+                population: 15933883
             },
             {
                 name: 'Zimbabwe',
-                capital: 'Harare',
                 languages: ['English', 'Shona', 'Northern Ndebele'],
-                population: 14240168,
-                flag: 'https://restcountries.eu/data/zwe.svg',
-                currency: 'Botswana pula'
+                population: 14240168
             }
         ];
 
+        mostSpokenTenLanguages()
 
+        function mostSpokenTenPopulation() {
 
+            table.innerHTML = "";
+
+            const allPopulation = [];
+
+            for (let index = 0; index < countries.length; index++) {
+
+                allPopulation.push(countries[index].population);
+            }
+
+            let totalPopulation = allPopulation.reduce(function (num, number) {
+
+                return num + number;
+            })
+
+            const populationSort = allPopulation.sort(function (a, b) {
+
+                return b.id - a.id; // büyükten küçüğe
+            });
+
+            //? hangi ülkeye ait oldukları?
+
+            /* const allPopulationSort = [];
+
+            for (const populationSortFilter of populationSort) {
+
+                const allPopulationFilter = allPopulation.filter(function (allPopulation, index) {
+
+                    return allPopulation === populationSortFilter; // ikisinde aynı olan değeri bir array içine aLır
+                });
+
+                allPopulationSort.push({ name: countries[index].name, value: allPopulationFilter });
+            }
+
+            console.log(allPopulationSort); */
+
+            for (let index = 0; index < 11; index++) {
+
+                let tr = document.createElement("tr");
+
+                let td = document.createElement("td");
+
+                if (index == 0) {
+                    td.textContent = "World";
+                }
+
+                for (let i = 0; i < countries.length; i++) {
+
+                    if (populationSort[index--] === countries[i].population) {
+
+                        td.textContent = countries[i].name;
+                    }
+                }
+
+                //? td.textContent =;
+                td.style.width = "20%";
+
+                tr.appendChild(td);
+
+                let tdTwo = document.createElement("td");
+                tdTwo.style.width = "60%";
+
+                let tdTwoDiv = document.createElement("div");
+
+                tdTwoDiv.style.width = "100%";
+                //! tdTwoDiv.style.width = ;
+
+                tdTwoDiv.style.height = "100%";
+                tdTwoDiv.style.backgroundColor = "#f2a93b";
+                tdTwoDiv.style.borderRadius = "3px";
+                tdTwo.appendChild(tdTwoDiv);
+
+                tr.appendChild(tdTwo);
+
+                let tdThree = document.createElement("td");
+
+                tdThree.textContent = totalPopulation;
+                //! tdThree.textContent = ;
+
+                tdThree.style.width = "20%";
+                tr.appendChild(tdThree);
+
+                table.appendChild(tr);
+            }
+        }
+
+        function mostSpokenTenLanguages() {
+
+            table.innerHTML = "";
+
+            const allLanguages = [];
+
+            countries.forEach(countryLanguage => {
+
+                allLanguages.push(...countryLanguage.languages);
+            });
+
+            const set = new Set(allLanguages);
+
+            const allLanguagesFilterSet = [];
+
+            for (const uniqueSet of set) {
+
+                const allLanguagesFilter = allLanguages.filter(function (allLanguage) {
+
+                    return allLanguage === uniqueSet; // ikisinde aynı olan değeri bir array içine aLır
+                });
+
+                allLanguagesFilterSet.push({ name: uniqueSet, value: allLanguagesFilter.length });
+            }
+
+            const allLanguagesFilterSetSort = allLanguagesFilterSet.sort(function (a, b) {
+
+                return b.value - a.value;
+
+            }).map(function (item) {
+
+                return { [item.name]: item.value };
+            });
+
+            const resultCountries = allLanguagesFilterSetSort.filter(function (item, index) {
+
+                if (index < 10) {
+
+                    return item;
+                }
+            });
+
+            for (let index = 0; index < resultCountries.length; index++) {
+
+                let key = Object.entries(resultCountries[index])[0][0];
+                let value = Object.entries(resultCountries[index])[0][1];
+
+                let tr = document.createElement("tr");
+
+                let td = document.createElement("td");
+                td.textContent = key;
+                td.style.width = "20%";
+                tr.appendChild(td);
+
+                let tdTwo = document.createElement("td");
+                tdTwo.style.width = "60%";
+
+                let tdTwoDiv = document.createElement("div");
+                tdTwoDiv.style.width = `${value}%`;
+                tdTwoDiv.style.height = "100%";
+                tdTwoDiv.style.backgroundColor = "#f2a93b";
+                tdTwoDiv.style.borderRadius = "3px";
+                tdTwo.appendChild(tdTwoDiv);
+
+                tr.appendChild(tdTwo);
+
+                let tdThree = document.createElement("td");
+                tdThree.textContent = value;
+                tdThree.style.width = "20%";
+                tr.appendChild(tdThree);
+
+                table.appendChild(tr);
+            }
+
+            return resultCountries; // TODO bu return e gerek var mı?
+        }
 
     </script>
 </body>
