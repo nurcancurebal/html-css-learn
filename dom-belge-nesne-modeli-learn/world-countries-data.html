@@ -1356,94 +1356,7 @@
             }
         ];
 
-        mostSpokenTenLanguages()
-
-        function mostSpokenTenPopulation() {
-
-            table.innerHTML = "";
-
-            const allPopulation = [];
-
-            for (let index = 0; index < countries.length; index++) {
-
-                allPopulation.push(countries[index].population);
-            }
-
-            let totalPopulation = allPopulation.reduce(function (num, number) {
-
-                return num + number;
-            })
-
-            const populationSort = allPopulation.sort(function (a, b) {
-
-                return b.id - a.id; // büyükten küçüğe
-            });
-
-            //? hangi ülkeye ait oldukları?
-
-            /* const allPopulationSort = [];
-
-            for (const populationSortFilter of populationSort) {
-
-                const allPopulationFilter = allPopulation.filter(function (allPopulation, index) {
-
-                    return allPopulation === populationSortFilter; // ikisinde aynı olan değeri bir array içine aLır
-                });
-
-                allPopulationSort.push({ name: countries[index].name, value: allPopulationFilter });
-            }
-
-            console.log(allPopulationSort); */
-
-            for (let index = 0; index < 11; index++) {
-
-                let tr = document.createElement("tr");
-
-                let td = document.createElement("td");
-
-                if (index == 0) {
-                    td.textContent = "World";
-                }
-
-                for (let i = 0; i < countries.length; i++) {
-
-                    if (populationSort[index--] === countries[i].population) {
-
-                        td.textContent = countries[i].name;
-                    }
-                }
-
-                //? td.textContent =;
-                td.style.width = "20%";
-
-                tr.appendChild(td);
-
-                let tdTwo = document.createElement("td");
-                tdTwo.style.width = "60%";
-
-                let tdTwoDiv = document.createElement("div");
-
-                tdTwoDiv.style.width = "100%";
-                //! tdTwoDiv.style.width = ;
-
-                tdTwoDiv.style.height = "100%";
-                tdTwoDiv.style.backgroundColor = "#f2a93b";
-                tdTwoDiv.style.borderRadius = "3px";
-                tdTwo.appendChild(tdTwoDiv);
-
-                tr.appendChild(tdTwo);
-
-                let tdThree = document.createElement("td");
-
-                tdThree.textContent = totalPopulation;
-                //! tdThree.textContent = ;
-
-                tdThree.style.width = "20%";
-                tr.appendChild(tdThree);
-
-                table.appendChild(tr);
-            }
-        }
+        mostSpokenTenLanguages();
 
         function mostSpokenTenLanguages() {
 
@@ -1520,6 +1433,97 @@
             }
 
             return resultCountries; // TODO bu return e gerek var mı?
+        }
+
+        function mostSpokenTenPopulation() {
+
+            table.innerHTML = "";
+
+            const tr = document.createElement("tr");
+
+            const td = document.createElement("td");
+            td.textContent = "World";
+            td.style.width = "20%";
+
+            tr.appendChild(td);
+
+            let tdTwo = document.createElement("td");
+            tdTwo.style.width = "60%";
+            tdTwo.style.height = "41px";
+
+            let tdTwoDiv = document.createElement("div");
+
+            tdTwoDiv.style.width = "100%";
+            tdTwoDiv.style.height = "100%";
+            tdTwoDiv.style.backgroundColor = "#f2a93b";
+            tdTwoDiv.style.borderRadius = "3px";
+            tdTwo.appendChild(tdTwoDiv);
+
+            tr.appendChild(tdTwo);
+
+            let tdThree = document.createElement("td");
+
+            let totalPopulation = 0;
+
+            for (let index = 0; index < countries.length; index++) {
+
+                totalPopulation += countries[index].population;
+            }
+
+            tdThree.textContent = totalPopulation;
+
+            tdThree.style.width = "20%";
+
+            tr.appendChild(tdThree);
+
+            table.appendChild(tr);
+
+            const populationSort = countries.sort(function (a, b) {
+
+                return b.population - a.population;
+            });
+
+            const populationTenSort = [];
+
+            populationSort.forEach(function (item, index) {
+
+                if (index < 10) {
+                    populationTenSort.push(item);
+                }
+            })
+
+            for (let index = 0; index < 10; index++) {
+
+                let tr = document.createElement("tr");
+
+                let td = document.createElement("td");
+                td.textContent = populationTenSort[index].name;
+                td.style.width = "20%";
+
+                tr.appendChild(td);
+
+                let tdTwo = document.createElement("td");
+                tdTwo.style.width = "60%";
+
+                let tdTwoDiv = document.createElement("div");
+
+                const widthPopulation = (populationTenSort[index].population * 100) / totalPopulation;
+
+                tdTwoDiv.style.width = `${widthPopulation}%`;
+                tdTwoDiv.style.height = "100%";
+                tdTwoDiv.style.backgroundColor = "#f2a93b";
+                tdTwoDiv.style.borderRadius = "3px";
+                tdTwo.appendChild(tdTwoDiv);
+
+                tr.appendChild(tdTwo);
+
+                let tdThree = document.createElement("td");
+                tdThree.textContent = populationTenSort[index].population;;
+                tdThree.style.width = "20%";
+                tr.appendChild(tdThree);
+
+                table.appendChild(tr);
+            }
         }
 
     </script>
