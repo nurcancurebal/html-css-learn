@@ -324,25 +324,29 @@
             'Zimbabwe'
         ];
 
-        countries.forEach(function (country) {
+        countriesList();
 
-            const divCountryBacgroundColor = document.createElement("div");
-            divCountryBacgroundColor.style.backgroundColor = "#071034ad";
-            divCountryBacgroundColor.textContent = country.toUpperCase();
-            /* divCountryBacgroundColor.style.wordWrap = "break-word";  *///! burası neden işe yaramıyor
-            divCountryBacgroundColor.style.color = "white";
-            divCountryBacgroundColor.style.textAlign = "center";
-            divCountryBacgroundColor.style.lineHeight = "150px";
-            divCountryBacgroundColor.style.fontWeight = "800";
+        function countriesList() {
 
-            const divCountry = document.createElement("div");
-            divCountry.style.backgroundImage = "url('images/map_image.jpg')";
-            divCountry.style.backgroundRepeat = "no-repeat";
-            divCountry.style.backgroundSize = "100% 100%";
+            countries.forEach(function (country) {
 
-            divCountry.appendChild(divCountryBacgroundColor);
-            containerTwo.appendChild(divCountry);
-        });
+                const divCountryBacgroundColor = document.createElement("div");
+                divCountryBacgroundColor.style.backgroundColor = "#071034ad";
+                divCountryBacgroundColor.textContent = country.toUpperCase();
+                divCountryBacgroundColor.style.color = "white";
+                divCountryBacgroundColor.style.textAlign = "center";
+                divCountryBacgroundColor.style.lineHeight = "150px";
+                divCountryBacgroundColor.style.fontWeight = "800";
+                const divCountry = document.createElement("div");
+                divCountry.style.backgroundImage = "url('images/map_image.jpg')";
+                divCountry.style.backgroundRepeat = "no-repeat";
+                divCountry.style.backgroundSize = "100% 100%";
+
+                divCountry.appendChild(divCountryBacgroundColor);
+                containerTwo.appendChild(divCountry);
+            });
+        }
+
 
 
     </script>
