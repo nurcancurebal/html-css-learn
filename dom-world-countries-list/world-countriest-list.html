@@ -107,9 +107,10 @@
                     <h4 id="countries-containing-container" style="display:none;"></h4>
                 </div>
                 <div id="buttons">
-                    <button>STARTING WORD</button>
-                    <input type="text" value="SEARCH WITH ANY WORD">
-                    <button>
+                    <button onclick="startingWordClick()" id="starting-word">STARTING WORD</button>
+                    <input type="text" onclick="searchWithAnyWordClick()" id="search-with-any-word"
+                        value="SEARCH WITH ANY WORD">
+                    <button onclick="faArrowClick()" id="fa-arrow">
                         <i class="fa-solid fa-arrow-down-a-z"></i>
                     </button>
                 </div>
@@ -129,6 +130,9 @@
         const containerTwo = document.querySelector("#container-two");
         const searchCountry = document.querySelector("#search-country");
         const countriesContainingContainer = document.querySelector("#countries-containing-container");
+        const searchWithAnyWord = document.querySelector("#search-with-any-word");
+        const startingWord = document.querySelector("#starting-word");
+        const faArrow = document.querySelector("#fa-arrow");
 
         const countries = [
             'Afghanistan',
@@ -367,8 +371,6 @@
                     return filterCountry.includes(event.key);
                 });
 
-                console.log(event.key);
-
                 countriesContainingContainer.style.display = "block";
 
                 const countriesContaining = document.createElement("span");
@@ -398,6 +400,77 @@
                 countriesList(filterCountries);
             }
         }
+
+        function searchWithAnyWordClick() {
+
+            searchWithAnyWord.style.backgroundColor = "#4f1ba9";
+            startingWord.style.backgroundColor = "#7e55d7";
+            faArrow.style.backgroundColor = "#7e55d7";
+
+            searchWithAnyWord.addEventListener("keypress", keyCode);
+        }
+
+        function startingWordClick() {
+
+            startingWord.style.backgroundColor = "#4f1ba9";
+            searchWithAnyWord.style.backgroundColor = "#7e55d7";
+            faArrow.style.backgroundColor = "#7e55d7";
+
+            startingWord.addEventListener("keypress", keyCodeTwo);
+
+            function keyCodeTwo(event) {
+
+                countriesContainingContainer.innerHTML = "";
+
+                if (isNaN(event.key)) {
+
+                    event.key.toUpperCase();
+
+                    const filterCountries = countries.filter(function (filterCountry) {
+
+                        return filterCountry.startsWith(event.key);
+                    });
+
+                    countriesContainingContainer.style.display = "block";
+
+                    const countriesContaining = document.createElement("span");
+                    countriesContaining.textContent = "Countries containing ";
+
+                    const spanEventKey = document.createElement("span");
+                    spanEventKey.textContent = event.key;
+                    spanEventKey.style.color = colorGenerator();
+
+                    const spanAre = document.createElement("span");
+                    spanAre.textContent = " are ";
+
+                    const spanFilterCountries = document.createElement("span");
+                    spanFilterCountries.textContent = filterCountries.length;
+                    spanFilterCountries.style.color = colorGenerator();
+
+                    countriesContainingContainer.appendChild(countriesContaining);
+                    countriesContainingContainer.appendChild(spanEventKey);
+                    countriesContainingContainer.appendChild(spanAre);
+                    countriesContainingContainer.appendChild(spanFilterCountries);
+
+                    function colorGenerator() {
+
+                        return "#" + Number(Math.floor((Math.random() * 999999999) + 10000000), 16).toString(16).slice(0, 6);
+                    }
+
+                    countriesList(filterCountries);
+                }
+            }
+
+        }
+
+        function faArrowClick() {
+
+            faArrow.style.backgroundColor = "#4f1ba9";
+            startingWord.style.backgroundColor = "#7e55d7";
+            searchWithAnyWord.style.backgroundColor = "#7e55d7";
+        }
+
+
 
     </script>
 
