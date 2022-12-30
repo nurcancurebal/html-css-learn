@@ -37,8 +37,8 @@
             justify-content: center;
         }
 
-        #container-one>* {
-            margin-bottom: 50px;
+        #container-one div>* {
+            margin-bottom: 30px;
         }
 
         h1 {
@@ -104,7 +104,7 @@
                 <div>
                     <h1>WORLD COUNTRIES LIST</h1>
                     <h3>Total Number Of Countries: 193</h3>
-                    <h4></h4>
+                    <h4 id="countries-containing-container" style="display:none;"></h4>
                 </div>
                 <div id="buttons">
                     <button>STARTING WORD</button>
@@ -127,6 +127,8 @@
     <script>
 
         const containerTwo = document.querySelector("#container-two");
+        const searchCountry = document.querySelector("#search-country");
+        const countriesContainingContainer = document.querySelector("#countries-containing-container");
 
         const countries = [
             'Afghanistan',
@@ -324,11 +326,13 @@
             'Zimbabwe'
         ];
 
-        countriesList();
+        countriesList(countries);
 
-        function countriesList() {
+        function countriesList(countryItem) {
 
-            countries.forEach(function (country) {
+            containerTwo.innerHTML = "";
+
+            countryItem.forEach(function (country) {
 
                 const divCountryBacgroundColor = document.createElement("div");
                 divCountryBacgroundColor.style.backgroundColor = "#071034ad";
@@ -337,6 +341,7 @@
                 divCountryBacgroundColor.style.textAlign = "center";
                 divCountryBacgroundColor.style.lineHeight = "150px";
                 divCountryBacgroundColor.style.fontWeight = "800";
+
                 const divCountry = document.createElement("div");
                 divCountry.style.backgroundImage = "url('images/map_image.jpg')";
                 divCountry.style.backgroundRepeat = "no-repeat";
@@ -347,7 +352,52 @@
             });
         }
 
+        searchCountry.addEventListener("keypress", keyCode);
 
+        function keyCode(event) {
+
+            countriesContainingContainer.innerHTML = "";
+
+            if (isNaN(event.key)) {
+
+                event.key.toUpperCase();
+
+                const filterCountries = countries.filter(function (filterCountry) {
+
+                    return filterCountry.includes(event.key);
+                });
+
+                console.log(event.key);
+
+                countriesContainingContainer.style.display = "block";
+
+                const countriesContaining = document.createElement("span");
+                countriesContaining.textContent = "Countries containing ";
+
+                const spanEventKey = document.createElement("span");
+                spanEventKey.textContent = event.key;
+                spanEventKey.style.color = colorGenerator();
+
+                const spanAre = document.createElement("span");
+                spanAre.textContent = " are ";
+
+                const spanFilterCountries = document.createElement("span");
+                spanFilterCountries.textContent = filterCountries.length;
+                spanFilterCountries.style.color = colorGenerator();
+
+                countriesContainingContainer.appendChild(countriesContaining);
+                countriesContainingContainer.appendChild(spanEventKey);
+                countriesContainingContainer.appendChild(spanAre);
+                countriesContainingContainer.appendChild(spanFilterCountries);
+
+                function colorGenerator() {
+
+                    return "#" + Number(Math.floor((Math.random() * 999999999) + 10000000), 16).toString(16).slice(0, 6);
+                }
+
+                countriesList(filterCountries);
+            }
+        }
 
     </script>
 
