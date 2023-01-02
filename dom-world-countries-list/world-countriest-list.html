@@ -87,7 +87,7 @@
 
         #container-two {
             display: grid;
-            grid-template-columns: auto auto auto auto auto auto;
+            grid-template-columns: repeat(6, 1fr);
             gap: 20px 60px;
             margin: 90px;
             grid-auto-rows: 150px;
@@ -115,7 +115,7 @@
                     </button>
                 </div>
                 <div>
-                    <input type="text" id="search-country" placeholder="Search country..">
+                    <input disabled="true" type="text" id="search-country" placeholder="Search country..">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
@@ -126,13 +126,6 @@
     </div>
 
     <script>
-
-        const containerTwo = document.querySelector("#container-two");
-        const searchCountry = document.querySelector("#search-country");
-        const countriesContainingContainer = document.querySelector("#countries-containing-container");
-        const searchWithAnyWord = document.querySelector("#search-with-any-word");
-        const startingWord = document.querySelector("#starting-word");
-        const faArrow = document.querySelector("#fa-arrow");
 
         const countries = [
             'Afghanistan',
@@ -330,20 +323,122 @@
             'Zimbabwe'
         ];
 
+        const containerTwo = document.querySelector("#container-two");
+        const searchCountry = document.querySelector("#search-country");
+        const countriesContainingContainer = document.querySelector("#countries-containing-container");
+        const searchWithAnyWord = document.querySelector("#search-with-any-word");
+        const startingWord = document.querySelector("#starting-word");
+        const faArrow = document.querySelector("#fa-arrow");
+
+        let searchType;
+
+        function searchWithAnyWordClick() {
+
+            searchType = "ANY";
+            searchWithAnyWord.style.backgroundColor = "#4f1ba9";
+            startingWord.style.backgroundColor = "#7e55d7";
+            faArrow.style.backgroundColor = "#7e55d7";
+            searchCountry.removeAttribute("disabled");
+        };
+
+        function startingWordClick() {
+
+            searchType = "START";
+            startingWord.style.backgroundColor = "#4f1ba9";
+            searchWithAnyWord.style.backgroundColor = "#7e55d7";
+            faArrow.style.backgroundColor = "#7e55d7";
+            searchCountry.removeAttribute("disabled");
+
+        };
+
+        function faArrowClick() {
+
+            searchType = "SORT";
+            faArrow.style.backgroundColor = "#4f1ba9";
+            startingWord.style.backgroundColor = "#7e55d7";
+            searchWithAnyWord.style.backgroundColor = "#7e55d7";
+            searchCountry.removeAttribute("disabled");
+        };
+
         countriesList(countries);
 
-        function countriesList(countryItem) {
+        searchCountry.addEventListener("keyup", function keyCode(event) {
+
+            const inputValue = searchCountry.value;
+
+            if (!inputValue) {
+                countriesList(countries);
+                return;
+            }
+
+            countriesContainingContainer.innerHTML = "";
+
+            const filterCountries = countries.filter(function (filterCountry) {
+
+                switch (searchType) {
+
+                    case "START": {
+                        const regexpFormule = new RegExp(`^${inputValue}`, "gi");
+                        return String(filterCountry).match(regexpFormule);
+                    }
+
+                    case "ANY": {
+                        const regexpFormule = new RegExp(`${inputValue}`, "gi");
+                        return String(filterCountry).match(regexpFormule);
+                    }
+
+                    case "SORT":
+                        console.log("SORT");
+                        break;
+
+                    default:
+                        return false;
+                }
+            });
+
+            countriesContainingContainer.style.display = "block";
+
+            const countriesContaining = document.createElement("span");
+            countriesContaining.textContent = "Countries containing ";
+
+            const spanEventKey = document.createElement("span");
+            spanEventKey.textContent = inputValue;
+            spanEventKey.style.color = colorGenerator();
+
+            const spanAre = document.createElement("span");
+            spanAre.textContent = " are ";
+
+            const spanFilterCountries = document.createElement("span");
+            spanFilterCountries.textContent = filterCountries.length;
+            spanFilterCountries.style.color = colorGenerator();
+
+            countriesContainingContainer.appendChild(countriesContaining);
+            countriesContainingContainer.appendChild(spanEventKey);
+            countriesContainingContainer.appendChild(spanAre);
+            countriesContainingContainer.appendChild(spanFilterCountries);
+
+            function colorGenerator() {
+
+                return "#" + Number(Math.floor((Math.random() * 999999999) + 10000000), 16).toString(16).slice(0, 6);
+            }
+
+            countriesList(filterCountries);
+        });
+
+
+        function countriesList(countries) {
 
             containerTwo.innerHTML = "";
 
-            countryItem.forEach(function (country) {
+            countries.forEach(function (country) {
 
                 const divCountryBacgroundColor = document.createElement("div");
                 divCountryBacgroundColor.style.backgroundColor = "#071034ad";
                 divCountryBacgroundColor.textContent = country.toUpperCase();
                 divCountryBacgroundColor.style.color = "white";
                 divCountryBacgroundColor.style.textAlign = "center";
-                divCountryBacgroundColor.style.lineHeight = "150px";
+                divCountryBacgroundColor.style.paddingTop = "60.5px";
+                divCountryBacgroundColor.style.paddingBottom = "60.5px";
                 divCountryBacgroundColor.style.fontWeight = "800";
 
                 const divCountry = document.createElement("div");
@@ -354,123 +449,7 @@
                 divCountry.appendChild(divCountryBacgroundColor);
                 containerTwo.appendChild(divCountry);
             });
-        }
-
-        searchCountry.addEventListener("keypress", keyCode);
-
-        function keyCode(event) {
-
-            countriesContainingContainer.innerHTML = "";
-
-            if (isNaN(event.key)) {
-
-                event.key.toUpperCase();
-
-                const filterCountries = countries.filter(function (filterCountry) {
-
-                    return filterCountry.includes(event.key);
-                });
-
-                countriesContainingContainer.style.display = "block";
-
-                const countriesContaining = document.createElement("span");
-                countriesContaining.textContent = "Countries containing ";
-
-                const spanEventKey = document.createElement("span");
-                spanEventKey.textContent = event.key;
-                spanEventKey.style.color = colorGenerator();
-
-                const spanAre = document.createElement("span");
-                spanAre.textContent = " are ";
-
-                const spanFilterCountries = document.createElement("span");
-                spanFilterCountries.textContent = filterCountries.length;
-                spanFilterCountries.style.color = colorGenerator();
-
-                countriesContainingContainer.appendChild(countriesContaining);
-                countriesContainingContainer.appendChild(spanEventKey);
-                countriesContainingContainer.appendChild(spanAre);
-                countriesContainingContainer.appendChild(spanFilterCountries);
-
-                function colorGenerator() {
-
-                    return "#" + Number(Math.floor((Math.random() * 999999999) + 10000000), 16).toString(16).slice(0, 6);
-                }
-
-                countriesList(filterCountries);
-            }
-        }
-
-        function searchWithAnyWordClick() {
-
-            searchWithAnyWord.style.backgroundColor = "#4f1ba9";
-            startingWord.style.backgroundColor = "#7e55d7";
-            faArrow.style.backgroundColor = "#7e55d7";
-
-            searchWithAnyWord.addEventListener("keypress", keyCode);
-        }
-
-        function startingWordClick() {
-
-            startingWord.style.backgroundColor = "#4f1ba9";
-            searchWithAnyWord.style.backgroundColor = "#7e55d7";
-            faArrow.style.backgroundColor = "#7e55d7";
-
-            startingWord.addEventListener("keypress", keyCodeTwo);
-
-            function keyCodeTwo(event) {
-
-                countriesContainingContainer.innerHTML = "";
-
-                if (isNaN(event.key)) {
-
-                    event.key.toUpperCase();
-
-                    const filterCountries = countries.filter(function (filterCountry) {
-
-                        return filterCountry.startsWith(event.key);
-                    });
-
-                    countriesContainingContainer.style.display = "block";
-
-                    const countriesContaining = document.createElement("span");
-                    countriesContaining.textContent = "Countries containing ";
-
-                    const spanEventKey = document.createElement("span");
-                    spanEventKey.textContent = event.key;
-                    spanEventKey.style.color = colorGenerator();
-
-                    const spanAre = document.createElement("span");
-                    spanAre.textContent = " are ";
-
-                    const spanFilterCountries = document.createElement("span");
-                    spanFilterCountries.textContent = filterCountries.length;
-                    spanFilterCountries.style.color = colorGenerator();
-
-                    countriesContainingContainer.appendChild(countriesContaining);
-                    countriesContainingContainer.appendChild(spanEventKey);
-                    countriesContainingContainer.appendChild(spanAre);
-                    countriesContainingContainer.appendChild(spanFilterCountries);
-
-                    function colorGenerator() {
-
-                        return "#" + Number(Math.floor((Math.random() * 999999999) + 10000000), 16).toString(16).slice(0, 6);
-                    }
-
-                    countriesList(filterCountries);
-                }
-            }
-
-        }
-
-        function faArrowClick() {
-
-            faArrow.style.backgroundColor = "#4f1ba9";
-            startingWord.style.backgroundColor = "#7e55d7";
-            searchWithAnyWord.style.backgroundColor = "#7e55d7";
-        }
-
-
+        };
 
     </script>
 
