@@ -111,7 +111,7 @@
                     <input type="text" onclick="searchWithAnyWordClick()" id="search-with-any-word"
                         value="SEARCH WITH ANY WORD">
                     <button onclick="faArrowClick()" id="fa-arrow">
-                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                        <i class="fa-solid fa-arrow-down-a-z" id="fa-arrow-i"></i>
                     </button>
                 </div>
                 <div>
@@ -329,6 +329,7 @@
         const searchWithAnyWord = document.querySelector("#search-with-any-word");
         const startingWord = document.querySelector("#starting-word");
         const faArrow = document.querySelector("#fa-arrow");
+        const faArrowI = document.querySelector("#fa-arrow-i");
 
         let searchType;
 
@@ -353,11 +354,35 @@
 
         function faArrowClick() {
 
-            searchType = "SORT";
             faArrow.style.backgroundColor = "#4f1ba9";
             startingWord.style.backgroundColor = "#7e55d7";
             searchWithAnyWord.style.backgroundColor = "#7e55d7";
-            searchCountry.removeAttribute("disabled");
+
+            countriesContainingContainer.style.display = "none";
+            searchCountry.setAttribute("disabled", "true");
+
+            const faArrowIClass = faArrowI.getAttribute("class");
+
+            if (faArrowIClass == "fa-solid fa-arrow-down-a-z") {
+
+                const countriesSort = countries.sort((a, b) => a.localeCompare(b));
+
+                countriesList(countriesSort);
+
+                faArrowI.setAttribute("class", "fa-solid fa-arrow-down-z-a");
+
+                return;
+
+            } else if (faArrowIClass == "fa-solid fa-arrow-down-z-a") {
+
+                const countriesSort = countries.sort((a, b) => b.localeCompare(a));
+
+                countriesList(countriesSort);
+
+                faArrowI.setAttribute("class", "fa-solid fa-arrow-down-a-z");
+
+                return
+            }
         };
 
         countriesList(countries);
@@ -373,33 +398,36 @@
 
             countriesContainingContainer.innerHTML = "";
 
+            const countriesContaining = document.createElement("span");
+
             const filterCountries = countries.filter(function (filterCountry) {
 
                 switch (searchType) {
 
                     case "START": {
-                        const regexpFormule = new RegExp(`^${inputValue}`, "gi");
+
+                        countriesContaining.textContent = "Countries start with ";
+
+                        countriesContainingContainer.style.display = "block";
+
+                        const regexpFormule = new RegExp(`^${inputValue}`, "gi"); // $ regex olarak değil değişken tanımlama amaçlı kullanılmıştır.
                         return String(filterCountry).match(regexpFormule);
                     }
 
                     case "ANY": {
+
+                        countriesContaining.textContent = "Countries containing ";
+
+                        countriesContainingContainer.style.display = "block";
+
                         const regexpFormule = new RegExp(`${inputValue}`, "gi");
                         return String(filterCountry).match(regexpFormule);
                     }
-
-                    case "SORT":
-                        console.log("SORT");
-                        break;
 
                     default:
                         return false;
                 }
             });
-
-            countriesContainingContainer.style.display = "block";
-
-            const countriesContaining = document.createElement("span");
-            countriesContaining.textContent = "Countries containing ";
 
             const spanEventKey = document.createElement("span");
             spanEventKey.textContent = inputValue;
@@ -423,7 +451,7 @@
             }
 
             countriesList(filterCountries);
-        });
+        }); // keyCode sonu
 
 
         function countriesList(countries) {
@@ -437,8 +465,10 @@
                 divCountryBacgroundColor.textContent = country.toUpperCase();
                 divCountryBacgroundColor.style.color = "white";
                 divCountryBacgroundColor.style.textAlign = "center";
-                divCountryBacgroundColor.style.paddingTop = "60.5px";
-                divCountryBacgroundColor.style.paddingBottom = "60.5px";
+                divCountryBacgroundColor.style.height = "146px";
+                divCountryBacgroundColor.style.display = "flex";
+                divCountryBacgroundColor.style.justifyContent = "center";
+                divCountryBacgroundColor.style.alignItems = "center";
                 divCountryBacgroundColor.style.fontWeight = "800";
 
                 const divCountry = document.createElement("div");
