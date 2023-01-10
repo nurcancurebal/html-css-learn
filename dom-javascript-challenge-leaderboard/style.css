@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+#inputs-button {
+    margin: 30px 0;
+}
+
+.inputs {
+    padding: 10px 20px;
+    border: 1px solid #e5c9c5;
+    font-size: 15px;
+    outline: none;
+}
+
+.inputs:focus {
+    border: 1px solid #c98d84;
+}
+
+.button {
+    padding: 10px 20px;
+    background-color: #e5c9c5;
+    border: none;
+    color: white;
+    padding: 11px 20px;
+}
+
+#players {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-action {
+    display: flex;
+    margin-right: 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+}
+
+.buttons-parrent {
+    background-color: white;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+}
+
+.buttons-parrent > i {
+    font-size: 15px;
+    color: red;
+}
+
+.buttons-parrent > span {
+    font-size: 15px;
+}

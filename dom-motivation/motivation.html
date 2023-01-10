@@ -7,62 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Motivation</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial;
-        }
-
-        #container {
-            display: flex;
-            flex-direction: column;
-            margin: 90px;
-        }
-
-        #name {
-            font-size: 5em;
-            letter-spacing: 0.4em;
-        }
-
-        #features {
-            display: flex;
-            height: 90px;
-            background-color: #eddfde;
-            margin: 40px 0;
-            padding: 34px 0;
-        }
-
-        #about-me {
-            line-height: 25px;
-            font-size: 15px;
-        }
-
-        #boxes {
-            display: flex;
-            justify-content: center;
-        }
-
-        .box {
-            width: 250px;
-            height: 155px;
-            margin: 50px 100px;
-            text-align: center;
-            line-height: 155px;
-            font-size: 28px;
-            box-shadow: 1px 1px 5px rgba(82, 80, 80, 0.435), 1px 1px 5px rgba(82, 80, 80, 0.435);
-        }
-
-        .box:hover {
-            background-color: #eddfde;
-            font-size: 32px;
-        }
-
-        #technologies {
-            font-size: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -88,79 +33,7 @@
         <div id="technologies">The technologies i learned</div>
     </div>
 
-    <script>
-
-        const features = document.querySelector("#features");
-
-        const obj = [
-            { class: "fa-solid fa-book-open", text: "Software Student" },
-            { class: "fa-solid fa-fire", text: "Software Developer" },
-            { class: "fa-solid fa-laptop", text: "Designer" },
-            { class: "fa-solid fa-seedling", text: "Frontend Developer" }
-        ]
-
-        let index = 0;
-
-        const featuresIcon = document.createElement("i");
-        const featuresIconText = document.createElement("span");
-
-        featuresIcon.setAttribute("class", ` ${obj[index].class}`);
-        featuresIcon.style.margin = "0 20px";
-        featuresIconText.innerText = obj[index].text;
-        featuresIconText.style.fontWeight = "500";
-
-        featuresIcon.appendChild(featuresIconText);
-        features.appendChild(featuresIcon);
-
-        index++;
-
-        setInterval(function () {
-
-            featuresIconText.innerText = obj[index].text;
-            featuresIcon.setAttribute("class", ` ${obj[index].class}`);
-
-            index++;
-
-            if (index == 4) {
-                index = 0;
-            };
-        }, 3000);
-
-        const technologies = document.querySelector("#technologies");
-
-        const technologiesArray = ["HTML", "CSS", "JAVASCRIPT", "BOOTSTRAP", "VUE"];
-
-        const technologiesSpan = document.createElement("span");
-
-        let counter = 0;
-
-        technologiesSpan.textContent = technologiesArray[counter];
-        technologiesSpan.style.color = colorGenerator();
-        technologiesSpan.style.fontSize = "50px";
-        technologiesSpan.style.margin = "0 10px";
-
-        technologies.appendChild(technologiesSpan);
-
-        counter++;
-
-        setInterval(function () {
-
-            technologiesSpan.textContent = technologiesArray[counter];
-            technologiesSpan.style.color = colorGenerator();
-
-            counter++;
-
-            if (counter == 5) {
-                counter = 0;
-            };
-        }, 3000);
-
-        function colorGenerator() {
-
-            return "#" + Number(Math.floor((Math.random() * 999999999) + 10000000), 16).toString(16).slice(0, 6);
-        }
-
-    </script>
+    <script src="./main.js"></script>
 
 </body>
 
