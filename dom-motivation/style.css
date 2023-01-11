@@ -22,6 +22,7 @@
     background-color: #eddfde;
     margin: 40px 0;
     padding: 34px 0;
+    font-size: 20px;
 }
 
 #about-me {
@@ -53,17 +54,30 @@
     font-size: 15px;
 }
 
-#technologies > span {
+#technologies>span {
     font-size: 45px;
     margin-left: 5px;
-    transition: opacity 1s;
-    
+    transition: opacity 2s;
 }
 
 .opacity {
     opacity: 0;
 }
 
-.non-opacity{
+.non-opacity {
     opacity: 1;
+}
+
+#features>i>span {
+    color: black;
+    font-weight: 500;
+    transition: opacity 2s, margin-left 2s;
+}
+
+.non-margin {
+    margin-left: 0;
+}
+
+.margin {
+    margin-left: 30px;
 }
