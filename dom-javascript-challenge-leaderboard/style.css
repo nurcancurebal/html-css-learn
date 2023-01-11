@@ -6,8 +6,8 @@
 
 #container {
     display: flex;
-    text-align: center;
     flex-direction: column;
+    align-items: center;
     margin-top: 40px;
 }
 
@@ -31,18 +31,21 @@
     background-color: #e5c9c5;
     border: none;
     color: white;
-    padding: 11px 20px;
+    padding: 10px 20px;
+    font-size: 17px;
 }
 
 #players {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .buttons-action {
-    display: flex;
-    margin-right: 30px;
-    justify-content: center;
+    display: inline-flex;
+    margin-right: 60px;
+    justify-content: flex-end;
     align-items: center;
     gap: 7px;
 }
@@ -52,16 +55,39 @@
     width: 45px;
     height: 45px;
     display: flex;
-    justify-content: center;
     align-items: center;
     border-radius: 100%;
 }
 
-.buttons-parrent > i {
+.buttons-parrent>i {
     font-size: 15px;
     color: red;
+    margin: auto;
 }
 
-.buttons-parrent > span {
+.buttons-parrent>span {
     font-size: 15px;
+}
+
+.players-div {
+    background-color: #e5c9c5;
+    width: 998px;
+    margin-bottom: 7px;
+    display: block;
+    padding: 10px 0;
+}
+
+.players-div span {
+    display: inline-block;
+    width: 23%;
+}
+
+
+.players-div span.buttons-action {
+    display: inline-flex;
+    width: 23%;
+}
+
+.players-div span:first-child {
+    margin-left: 15px;
 }
