@@ -42,7 +42,7 @@ headerTitleAreaYear.style.marginLeft = "10px";
 headerTitleAreaYear.style.fontSize = "60px";
 headerTitleAreaYear.innerText = new Date().getFullYear();
 
-// ? Burada yılın renki değiştirilir her yarım saniyede bir.
+// ? Burada yılın rengi değiştirilir her yarım saniyede bir.
 setInterval(() => {
     headerTitleAreaYear.style.color = "#" + Math.floor((Math.random() * 333) + 111);
 }, 500);
@@ -71,6 +71,7 @@ headerFooterText.innerText = new Date().toUTCString();
 headerFooterText.style.fontSize = "18px";
 headerFooterText.style.backgroundColor = "#" + Math.floor((Math.random() * 333) + 111);
 headerFooterText.style.margin = "0";
+headerFooterText.style.padding = "9px";
 
 setInterval(() => {
     headerFooterText.style.backgroundColor = "#" + Math.floor((Math.random() * 333) + 111);
@@ -89,23 +90,28 @@ header.appendChild(headerFooter);
 // ! CONTENT ALANI - START
 
 const contentData = [
-    { name: "30 Days Of Python", listName: "Python", listChild: ["django", "Flask"], process: "Done" },
-    { name: "30 Days Of JavaScript", listName: "JavaScript", listChild: ["react", "vue", "angular"], process: "Ongoing" },
-    { name: "30 Days Of HTML & CSS", listName: "HTML & CSS", listChild: ["dom", "zom", "non"], process: "Coming" },
-    { name: "30 Days Of PHP", listName: "PHP", listChild: ["Larevel", "Symfony", "SQL"], process: "Coming" },
+    { name: "30 Days Of Python", listName: "Python", listChild: ["django", "Flask"], process: "Done", button: false },
+    { name: "30 Days Of JavaScript", listName: "JavaScript", listChild: ["react", "vue", "angular"], process: "Ongoing", button: false },
+    { name: "30 Days Of HTML & CSS", listName: "HTML & CSS", listChild: ["dom", "zom", "non"], process: "Coming", button: false },
+    { name: "30 Days Of PHP", listName: "PHP", listChild: ["Larevel", "Symfony", "SQL"], process: "Coming", button: false },
+    { name: "30 Days Of React", listName: "React", listChild: ["Larevel", "Symfony", "SQL"], process: "Coming", button: false },
+    { name: "30 Days Of ReactNative", listName: "ReactNative", listChild: ["Larevel", "Symfony", "SQL"], process: "Coming", button: false },
+    { name: "30 Days Of Fullstack", listName: "Fullstack", listChild: ["Larevel", "Symfony", "SQL"], process: "Coming", button: false },
+    { name: "30 Days Of Data Analysis", listName: "Data Analysis", listChild: ["Larevel", "Symfony", "SQL"], process: "Coming", button: false }
 ];
 
 const content = document.createElement("div");
-content.style.height = "200px";
 content.style.display = "flex";
 content.style.flexDirection = "column";
 
 let contentDataIndex = 0;
+
 while (contentData.length > contentDataIndex) {
+
     const contentItem = contentData[contentDataIndex];
 
     const contentItemElement = document.createElement("div");
-    contentItemElement.style.height = "100px";
+    contentItemElement.style.height = "62px";
     contentItemElement.style.marginBottom = "5px";
     contentItemElement.style.display = "flex";
     contentItemElement.style.justifyContent = "space-between";
@@ -113,25 +119,40 @@ while (contentData.length > contentDataIndex) {
     contentItemElement.style.paddingLeft = "20px";
     contentItemElement.style.paddingRight = "20px";
 
-    switch (contentItem.process) {
-        case "Done":
-            contentItemElement.style.backgroundColor = "#21bf74";
-            break;
-
-        case "Ongoing":
-            contentItemElement.style.backgroundColor = "#fddb3a";
-            break;
-
-        case "Coming":
-            contentItemElement.style.backgroundColor = "#fe5e53";
-            break;
-    }
 
     const contentItemElementOne = document.createElement("div");
     contentItemElementOne.innerText = contentItem.name;
 
     const contentItemElementTwo = document.createElement("div");
-    contentItemElementTwo.innerText = contentItem.listName;
+    const contentItemElementTwoDetails = document.createElement("details");
+    const contentItemElementTwoSummary = document.createElement("summary");
+
+    for (let index = 0; index < contentItem.listChild.length; index++) {
+
+        const contentItemElementTwoDiv = document.createElement("div");
+        contentItemElementTwoDiv.innerText = contentItem.listChild[index];
+
+        contentItemElementTwoDetails.appendChild(contentItemElementTwoDiv);
+    }
+
+    contentItemElementTwoSummary.innerText = contentItem.listName;
+
+    contentItemElementTwoSummary.onclick = function () {
+
+        if (contentItem.button) {
+
+            contentItemElement.style.height = "62px";
+
+        } else {
+
+            contentItemElement.style.height = "100px";
+        }
+
+        contentItem.button = !contentItem.button;
+    }
+
+    contentItemElementTwoDetails.appendChild(contentItemElementTwoSummary);
+    contentItemElementTwo.appendChild(contentItemElementTwoDetails);
 
     const contentItemElementThree = document.createElement("div");
     contentItemElementThree.innerText = contentItem.process;
@@ -139,6 +160,22 @@ while (contentData.length > contentDataIndex) {
     contentItemElement.appendChild(contentItemElementOne);
     contentItemElement.appendChild(contentItemElementTwo);
     contentItemElement.appendChild(contentItemElementThree);
+
+    switch (contentItem.process) {
+        case "Done":
+            contentItemElement.style.backgroundColor = "#21bf74";
+            contentItemElementOne.style.textDecoration = "underline";
+            break;
+
+        case "Ongoing":
+            contentItemElement.style.backgroundColor = "#fddb3a";
+            contentItemElementOne.style.textDecoration = "underline";
+            break;
+
+        case "Coming":
+            contentItemElement.style.backgroundColor = "#fe5e53";
+            break;
+    }
 
     content.append(contentItemElement);
     contentDataIndex++;
@@ -252,7 +289,6 @@ while (footerAreaData.length > footerAreaDataIndex) {
     footerAreaThreeItem.style.margin = "0px";
     footerAreaThreeItem.style.padding = "0px";
 
-
     const footerAreaThreeItemTitle = document.createElement("li");
     footerAreaThreeItemTitle.innerText = footerAreaThreeItemData.name;
     footerAreaThreeItemTitle.style.fontWeight = "700";
@@ -290,7 +326,7 @@ const footerAreaFour = document.createElement("div");
 footerAreaFour.style.height = "200px";
 
 const footerAreaFourTitle = document.createElement("h3");
-footerAreaFourTitle.innerText = "Keywords"
+footerAreaFourTitle.innerText = "Keywords";
 
 const footerAreaFourKeywordsArea = document.createElement("div");
 footerAreaFourKeywordsArea.style.display = "flex";
@@ -304,18 +340,18 @@ footerAreaFourKeywordsAreaIn.style.flexWrap = "wrap";
 const keywords = ["#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript", "#Html", "#Css", "#Javascript"];
 
 let keywordsIndex = 0
+
 while (keywords.length > keywordsIndex) {
     const keyword = keywords[keywordsIndex];
 
     const footerAreaFourKeywordsAreaInItem = document.createElement("span");
     footerAreaFourKeywordsAreaInItem.style.backgroundColor = "#" + Math.floor((Math.random() * 333) + 111);
-    footerAreaFourKeywordsAreaInItem.style.borderRadius = "25%";
+    footerAreaFourKeywordsAreaInItem.style.borderRadius = "20px";
     footerAreaFourKeywordsAreaInItem.innerText = keyword;
-    footerAreaFourKeywordsAreaInItem.style.padding = "5px";
+    footerAreaFourKeywordsAreaInItem.style.padding = "5px 10px";
     footerAreaFourKeywordsAreaInItem.style.height = "20px";
     footerAreaFourKeywordsAreaInItem.style.marginTop = "5px";
     footerAreaFourKeywordsAreaInItem.style.marginRight = "10px";
-
 
     footerAreaFourKeywordsAreaIn.appendChild(footerAreaFourKeywordsAreaInItem);
     keywordsIndex++;
