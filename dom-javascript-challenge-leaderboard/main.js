@@ -4,6 +4,10 @@ const firstNameInput = document.querySelector("#one");
 const lastNameInput = document.querySelector("#two");
 const countryInput = document.querySelector("#three");
 const playerScoreInput = document.querySelector("#four");
+const inputsButton = document.querySelector("#inputs-button");
+const inputsButtonRequired = document.createElement("div");
+
+inputsButton.appendChild(inputsButtonRequired);
 
 const PLAYERSOBJ = [
     { firstName: "MARTHA", lastName: "YOHANES", country: "FINLAND", playerScore: "85" },
@@ -17,6 +21,7 @@ playersFunction();
 function playersFunction() {
 
     players.innerHTML = "";
+    inputsButtonRequired.style.display = "none";
 
     for (let index = 0; index < PLAYERSOBJ.length; index++) {
 
@@ -111,7 +116,15 @@ function playersFunction() {
 
 function addPlayerClick() {
 
-    PLAYERSOBJ.push({ firstName: firstNameInput.value.toUpperCase(), lastName: lastNameInput.value.toUpperCase(), country: countryInput.value.toUpperCase(), playerScore: playerScoreInput.value.toUpperCase() });
+    if (!firstNameInput.value || !lastNameInput.value || !countryInput.value || !playerScoreInput.value) {
 
+        inputsButtonRequired.style.display = "block";
+        inputsButtonRequired.textContent = "All fields are required";
+        inputsButtonRequired.className = "inputs-button-required";
+
+        return;
+    }
+
+    PLAYERSOBJ.push({ firstName: firstNameInput.value.toUpperCase(), lastName: lastNameInput.value.toUpperCase(), country: countryInput.value.toUpperCase(), playerScore: playerScoreInput.value.toUpperCase() });
     playersFunction();
 } 
