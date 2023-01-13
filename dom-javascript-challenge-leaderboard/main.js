@@ -1,5 +1,9 @@
 
 const players = document.querySelector("#players");
+const firstNameInput = document.querySelector("#one");
+const lastNameInput = document.querySelector("#two");
+const countryInput = document.querySelector("#three");
+const playerScoreInput = document.querySelector("#four");
 
 const PLAYERSOBJ = [
     { firstName: "MARTHA", lastName: "YOHANES", country: "FINLAND", playerScore: "85" },
@@ -8,72 +12,106 @@ const PLAYERSOBJ = [
     { firstName: "MATHIAS", lastName: "ELIAS", country: "SWEDEN", playerScore: "70" }
 ];
 
+playersFunction();
 
-for (let index = 0; index < PLAYERSOBJ.length; index++) {
+function playersFunction() {
 
-    const playersDiv = document.createElement("div");
-    playersDiv.className = "players-div";
+    players.innerHTML = "";
 
+    for (let index = 0; index < PLAYERSOBJ.length; index++) {
 
-    const playerSpanNameDate = document.createElement("span");
+        const playersDiv = document.createElement("div");
+        playersDiv.className = "players-div";
+        playersDiv.setAttribute("id", index);
 
-    const playerDivName = document.createElement("div");
+        const playerSpanNameDate = document.createElement("span");
 
-    playerDivName.textContent = `${PLAYERSOBJ[index].firstName} ${PLAYERSOBJ[index].lastName}`;
+        const playerDivName = document.createElement("div");
 
-    const playerDivDate = document.createElement("div");
+        playerDivName.textContent = `${PLAYERSOBJ[index].firstName} ${PLAYERSOBJ[index].lastName}`;
 
-    const date = new Date();
+        const playerDivDate = document.createElement("div");
 
-    let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    let year = date.getFullYear();
-    let mounth = date.getMonth();
-    let dayNumber = date.getDate();
-    let hour = date.getHours();
-    let minute = date.getMinutes();
+        const date = new Date();
 
-    playerDivDate.innerText = `${months[mounth].toUpperCase()} ${dayNumber}.${year} ${hour}.${minute}`;
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        let year = date.getFullYear();
+        let mounth = date.getMonth();
+        let dayNumber = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
 
-    playerSpanNameDate.appendChild(playerDivName);
-    playerSpanNameDate.appendChild(playerDivDate);
+        playerDivDate.innerText = `${months[mounth].toUpperCase()} ${dayNumber}.${year} ${hour}.${minute}`;
 
-
-    const playerSpanCountry = document.createElement("span");
-    playerSpanCountry.textContent = `${PLAYERSOBJ[index].country}`;
-
-    const playerSpanScore = document.createElement("span");
-    playerSpanScore.textContent = `${PLAYERSOBJ[index].playerScore}`;
+        playerSpanNameDate.appendChild(playerDivName);
+        playerSpanNameDate.appendChild(playerDivDate);
 
 
-    const playerSpanAction = document.createElement("span");
-    playerSpanAction.className = "buttons-action";
+        const playerSpanCountry = document.createElement("span");
+        playerSpanCountry.textContent = `${PLAYERSOBJ[index].country}`;
 
-    const deleteBorderDiv = document.createElement("div");
-    deleteBorderDiv.className = "buttons-parrent";
-    const deleteIcon = document.createElement("i");
-    deleteIcon.className = "fa-solid fa-trash-can";
-    deleteBorderDiv.appendChild(deleteIcon);
+        const playerSpanScore = document.createElement("span");
+        playerSpanScore.textContent = PLAYERSOBJ[index].playerScore;
 
-    const plusBorderDiv = document.createElement("div");
-    plusBorderDiv.className = "buttons-parrent";
-    const pointsPlusIcon = document.createElement("span");
-    pointsPlusIcon.innerText = "+5";
-    plusBorderDiv.appendChild(pointsPlusIcon);
 
-    const reduceBorderDiv = document.createElement("div");
-    reduceBorderDiv.className = "buttons-parrent";
-    const pointsReduceIcon = document.createElement("span");
-    pointsReduceIcon.innerText = "-5";
-    reduceBorderDiv.appendChild(pointsReduceIcon);
+        const playerSpanAction = document.createElement("span");
+        playerSpanAction.className = "buttons-action";
 
-    playerSpanAction.appendChild(deleteBorderDiv);
-    playerSpanAction.appendChild(plusBorderDiv);
-    playerSpanAction.appendChild(reduceBorderDiv);
+        const deleteBorderDiv = document.createElement("div");
+        deleteBorderDiv.className = "buttons-parrent";
+        const deleteIcon = document.createElement("i");
+        deleteIcon.className = "fa-solid fa-trash-can";
+        deleteBorderDiv.appendChild(deleteIcon);
 
-    playersDiv.appendChild(playerSpanNameDate);
-    playersDiv.appendChild(playerSpanCountry);
-    playersDiv.appendChild(playerSpanScore);
-    playersDiv.appendChild(playerSpanAction);
+        deleteBorderDiv.onclick = function () {
 
-    players.appendChild(playersDiv);
+            if (playersDiv.id == index) {
+
+                playersDiv.remove();
+                PLAYERSOBJ.splice(index, 1);
+            }
+        }
+
+        const plusBorderDiv = document.createElement("div");
+        plusBorderDiv.className = "buttons-parrent";
+        const pointsPlusIcon = document.createElement("span");
+        pointsPlusIcon.innerText = "+5";
+
+        plusBorderDiv.onclick = function () {
+
+            playerSpanScore.textContent = Number(playerSpanScore.textContent) + 5;
+        }
+
+        plusBorderDiv.appendChild(pointsPlusIcon);
+
+        const reduceBorderDiv = document.createElement("div");
+        reduceBorderDiv.className = "buttons-parrent";
+        const pointsReduceIcon = document.createElement("span");
+        pointsReduceIcon.innerText = "-5";
+
+        reduceBorderDiv.onclick = function () {
+
+            playerSpanScore.textContent = Number(playerSpanScore.textContent) - 5;
+        }
+
+        reduceBorderDiv.appendChild(pointsReduceIcon);
+
+        playerSpanAction.appendChild(deleteBorderDiv);
+        playerSpanAction.appendChild(plusBorderDiv);
+        playerSpanAction.appendChild(reduceBorderDiv);
+
+        playersDiv.appendChild(playerSpanNameDate);
+        playersDiv.appendChild(playerSpanCountry);
+        playersDiv.appendChild(playerSpanScore);
+        playersDiv.appendChild(playerSpanAction);
+
+        players.appendChild(playersDiv);
+    }
 }
+
+function addPlayerClick() {
+
+    PLAYERSOBJ.push({ firstName: firstNameInput.value.toUpperCase(), lastName: lastNameInput.value.toUpperCase(), country: countryInput.value.toUpperCase(), playerScore: playerScoreInput.value.toUpperCase() });
+
+    playersFunction();
+} 
