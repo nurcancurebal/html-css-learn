@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#main {
+    margin: 50px 100px;
+    height: 800px;
+}
+
+#font {
+    font-weight: 500;
+    font-size: 800%;
+    padding: 60px;
+    transition: opacity 2s;
+}
+
+.opacity {
+    opacity: 0;
+}
+
+.non-opacity {
+    opacity: 1;
+}

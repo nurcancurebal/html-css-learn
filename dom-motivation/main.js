@@ -66,7 +66,7 @@ setInterval(function () {
 
     setTimeout(() => {
         technologiesSpan.className = "non-opacity";
-    }, 1); // 1 sn nin 1000 de 1 i geçtiğinde çalışacak yani 100 milisaniyede
+    }, 1); // 1 sn nin 1000 de 1 i geçtiğinde çalışacak yani 1 milisaniyede
 
 
     technologies.appendChild(technologiesSpan);
