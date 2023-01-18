@@ -23,7 +23,7 @@ function fontFamilyGenerator() {
     return fontArray[Math.floor(Math.random() * fontArray.length)];
 }
 
-const text = "30 DAYS OF JAVASCRİPT CHALLANGE 2023 NURCAN CÜREBAL";
+const text = "30 DAYS OF JAVASCRİPT CHALLENGE 2023 NURCAN CÜREBAL";
 
 const textSplit = text.split("");
 
