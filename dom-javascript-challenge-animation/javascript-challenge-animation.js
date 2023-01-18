@@ -3,24 +3,70 @@ const font = document.getElementById("font");
 
 main.style.backgroundColor = colorGenerator();
 
-font.className = "opacity";
-
-setTimeout(() => {
-    font.className = "non-opacity";
-}, 100);
-
 setInterval(
     function () {
         main.style.backgroundColor = colorGenerator();
-    }, 5000)
+    }, 3000)
+
+font.style.fontFamily = "Courier";
+
+setInterval(
+    function () {
+
+        font.style.fontFamily = fontFamilyGenerator();
+    }, 3000)
+
+function fontFamilyGenerator() {
+
+    const fontArray = ["Times New Roman", "Times", "serif", "Arial", "Helvetica", "sans-serif", "Times New Roman", "Georgia", "Garamond", "Verdana", "Courier New", "Lucida Console", "Monaco", "Brush Script MT", "Lucida Handwriting", "Copperplate", "Papyrus"];
+
+    return fontArray[Math.floor(Math.random() * fontArray.length)];
+}
+
+const text = "30 DAYS OF JAVASCRİPT CHALLANGE 2023 NURCAN CÜREBAL";
+
+const textSplit = text.split("");
+
+textSplit.forEach(function (letter) {
+
+    const letterSpan = document.createElement("span");
+
+    letterSpan.className = "opacity";
+
+    setTimeout(() => {
+
+        letterSpan.className = "non-opacity";
+    }, 100);
+
+    letterSpan.innerText = letter;
+    letterSpan.style.color = colorGenerator();
+
+    font.appendChild(letterSpan);
+})
+
+setInterval(function () {
+
+    font.innerHTML = "";
+
+    textSplit.forEach(function (letter) {
+
+        const letterSpan = document.createElement("span");
+
+        letterSpan.className = "opacity";
+
+        setTimeout(() => {
+
+            letterSpan.className = "non-opacity";
+        }, 100);
+
+        letterSpan.innerText = letter;
+        letterSpan.style.color = colorGenerator();
+
+        font.appendChild(letterSpan);
+    })
+}, 3000)
 
 function colorGenerator() {
 
     return "#" + Number(Math.floor((Math.random() * 999999999) + 10000000), 16).toString(16).slice(0, 6);
 }
-
-let splitText = font.innerText.split("");
-
-/* console.log(splitText.match(/\d/g)); hata */
-
-console.log(Array.isArray(splitText)); // true
