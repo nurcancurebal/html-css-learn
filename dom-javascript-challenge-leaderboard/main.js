@@ -74,6 +74,8 @@ function playersFunction() {
 
                 playersDiv.remove();
                 PLAYERSOBJ.splice(index, 1);
+
+                playersFunction();
             }
         }
 
@@ -127,4 +129,4 @@ function addPlayerClick() {
 
     PLAYERSOBJ.push({ firstName: firstNameInput.value.toUpperCase(), lastName: lastNameInput.value.toUpperCase(), country: countryInput.value.toUpperCase(), playerScore: playerScoreInput.value.toUpperCase() });
     playersFunction();
-} 
+}
