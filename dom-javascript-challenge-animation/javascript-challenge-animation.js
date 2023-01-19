@@ -1,11 +1,11 @@
-const main = document.querySelector("#main");
+const backgroundColorDiv = document.querySelector("#background-color-div");
 const font = document.getElementById("font");
 
-main.style.backgroundColor = colorGenerator();
+backgroundColorDiv.style.backgroundColor = colorGenerator();
 
 setInterval(
     function () {
-        main.style.backgroundColor = colorGenerator();
+        backgroundColorDiv.style.backgroundColor = colorGenerator();
     }, 3000)
 
 font.style.fontFamily = "Courier";

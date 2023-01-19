@@ -5,14 +5,26 @@
 }
 
 #main {
+    position: relative;
+}
+
+#background-color-div {
     margin: 50px;
-    height: 800px;
+    height: 750px;
+    position: absolute;
+    top: 0;
+    z-index: 4;
+    opacity: 0.5;
+    width: 90%;
 }
 
 #font {
     font-weight: 500;
-    font-size: 800%;
-    padding: 60px;
+    font-size: 850%;
+    padding: 120px;
+    position: absolute;
+    top: 0;
+    z-index: 5;
 }
 
 #font>span {
