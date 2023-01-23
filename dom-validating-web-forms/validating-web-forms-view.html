@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
 
     <p>FirstName: <span id="fname"></span></p>
     <p>LastName: <span id="lname"></span></p>
-    
+    <p>Email: <span id="email"></span></p>
+    <p>Password: <span id="password"></span></p>
+    <p>Telephone: <span id="telephone"></span></p>
+    <p>YourBio: <span id="yourbio"></span></p>
 
     <script>
 
         const fname = document.getElementById("fname");
         const lname = document.getElementById("lname");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const telephone = document.getElementById("telephone");
+        const yourbio = document.getElementById("yourbio");
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
         fname.innerText = urlParams.get("fname");
         lname.innerText = urlParams.get("lname");
-
+        email.innerText = urlParams.get("email");
+        password.innerText = urlParams.get("password");
+        telephone.innerText = urlParams.get("telephone");
+        yourbio.innerText = urlParams.get("yourbio");
 
     </script>
 </body>
+
 </html>
