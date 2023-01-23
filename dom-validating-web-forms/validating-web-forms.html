@@ -15,32 +15,37 @@
 <div id="container">
     <h1>Validating Web Forms</h1>
 
-    <form>
+    <form name="myForm" method="GET" action="./validating-web-forms-view.html" onsubmit="return validateForm()" >
         <label for="fname">First Name</label>
-        <input type="text" id="fname" placeholder="First Name...">
-        <strong>First name must be alphanumeric and contain 3 - 16 characters</strong>
+        <input type="text" name="fname" onkeyup="fnameValidator()"  id="fname" placeholder="First Name...">
+        <strong style="display: none;" id="fname-strong">First name must be alphanumeric and contain 3 - 16
+            characters</strong>
 
         <label for="lname">Last Name</label>
-        <input type="text" id="lname" placeholder="Last Name...">
-        <strong>Last name must be alphanumeric and contain 3 - 16 characters</strong>
+        <input type="text" name="lname"   id="lname" placeholder="Last Name...">
+        <strong style="display: none;" id="lname-strong">Last name must be alphanumeric and contain 3 - 16
+            characters</strong>
 
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Email...">
-        <strong>Email must be a valid address, e.g. example.com</strong>
+        <input type="email" name="email"  id="email" placeholder="Email...">
+        <strong style="display: none;" id="email-strong">Email must be a valid address, e.g. example.com</strong>
 
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Password...">
-        <strong>Password must be a alphanumeric (@,_ and - are also allowed) and between 6 - 20 characters</strong>
+        <input type="password" name="password" id="password" placeholder="Password...">
+        <strong style="display: none;" id="password-strong">Password must be a alphanumeric (@,_ and - are also allowed)
+            and between 6 - 20 characters</strong>
 
         <label for="telephone">Telephone</label>
-        <input type="text" id="telephone" placeholder="Telephone...">
-        <strong>A valid Telephone number (11 digits and 333-333-3334)</strong>
+        <input type="text" name="telephone"  id="telephone" placeholder="Telephone...">
+        <strong style="display: none;" id="telephone-strong">A valid Telephone number (11 digits and
+            333-333-3334)</strong>
 
         <label for="yourbio">Your Bio</label>
-        <input type="text" id="yourbio" placeholder="Your Bio...">
-        <strong>Bio must contain only lowercase letters, underscores, hyphens and be 8 - 50 characters</strong>
+        <input type="text" name="your-bio"  id="your-bio" placeholder="Your Bio...">
+        <strong style="display: none;" id="your-bio-strong">Bio must contain only lowercase letters, underscores,
+            hyphens and be 8 - 50 characters</strong>
 
-        <button>Submit</button>
+        <input type="submit" value="Submit">
     </form>
 
     </strong>
