@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Countries Data</title>
+    <link rel="stylesheet" href="./style.css">
+
+<body>
+
+    <div>
+        <header>
+            <div id="first-title">World Countries Data</div>
+            <div id="second-title">Currently, we have 250 countries</div>
+        </header>
+
+        <div id="button-note">
+            <button class="buttons" onclick="mostSpokenTenPopulation()" style="margin-right:10px;">POPULATION</button>
+            <button class="buttons" onclick="mostSpokenTenLanguages()">LANGUAGES</button>
+            <div id="noteOne">10 Most Spoken Languages In The World</div>
+            <div id="noteTwo" style="display: none;">10 Most Spoken Populated Countries In The World</div>
+        </div>
+
+        <div id="table-div">
+
+            <table></table>
+
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
