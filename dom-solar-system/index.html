@@ -4,195 +4,43 @@
 <head>
     <title>Solar System: Document Object Model</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-image: url("pictures/galaxy.gif");
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 2%;
-        }
-
-        header {
-            text-align: center;
-        }
-
-        header h1 {
-            color: white;
-            text-shadow: 2px 2px #6565ac;
-            font-size: 65px;
-        }
-
-        #mass-input {
-            margin-top: 3%;
-            padding: 10px;
-            outline: none;
-        }
-
-        #planet-select {
-            outline: none;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        #planet-select option {
-            background-color: #6d6c6c94;
-        }
-
-        header button {
-            background-color: #6d6c6c;
-            padding: 12px;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .flex-container {
-            background-color: rgba(74, 74, 74, 0.364);
-            margin: 2% 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 110px;
-        }
-
-        #description-area {
-            color: white;
-            background-color: rgba(74, 74, 74, 0.542);
-            padding: 25px 165px;
-            font-size: 25px;
-            display: none;
-        }
-
-        .description-area-calculate {
-            padding: 100px;
-            background-color: #444444cc;
-            border-radius: 100%;
-            max-width: 100px;
-            position: relative;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <div>
-    <header>
-        <h1>Calculate a weight of an object on a planet</h1>
+        <header>
+            <h1>Calculate a weight of an object on a planet</h1>
 
-        <input type="text" id="mass-input" placeholder="Enter Mass in Kilogram" />
+            <input type="text" id="mass-input" placeholder="Enter Mass in Kilogram" />
 
-        <select id="planet-select">
-            <option value="none">Select Planet</option>
-            <option value="mercury">Mercury</option>
-            <option value="venus">Venus</option>
-            <option value="earth">Earth</option>
-            <option value="moon">Moon</option>
-            <option value="mars">Mars</option>
-            <option value="jupiter">Jupiter</option>
-            <option value="saturn">Saturn</option>
-            <option value="uranus">Uranus</option>
-            <option value="neptune">Neptun</option>
-            <option value="pluto">Pluto</option>
-        </select>
+            <select id="planet-select">
+                <option value="none">Select Planet</option>
+                <option value="mercury">Mercury</option>
+                <option value="venus">Venus</option>
+                <option value="earth">Earth</option>
+                <option value="moon">Moon</option>
+                <option value="mars">Mars</option>
+                <option value="jupiter">Jupiter</option>
+                <option value="saturn">Saturn</option>
+                <option value="uranus">Uranus</option>
+                <option value="neptune">Neptun</option>
+                <option value="pluto">Pluto</option>
+            </select>
 
-        <button onclick="calculateWeight()">Calculate Weight</button>
+            <button onclick="calculateWeight()">Calculate Weight</button>
 
-    </header>
-    <main>
-        <div class="flex-container">
-            <img id="planet-area" src="./pictures/earth.png" />
-            <div id="description-area"></div>
-        </div>
-    </main>
+        </header>
+        <main>
+            <div class="flex-container">
+                <img id="planet-area" src="./img/earth.png" />
+                <div id="description-area"></div>
+            </div>
+        </main>
 
-</div>
+    </div>
 
-    <script>
-        const planetSelect = document.getElementById("planet-select");
-        const massInput = document.getElementById("mass-input");
-        const planetArea = document.getElementById("planet-area");
-        const descriptionArea = document.getElementById("description-area");
-
-        function calculateWeight() {
-
-            if (!massInput.value) {
-
-                planetArea.style.display = "none";
-                descriptionArea.style.display = "block";
-                descriptionArea.innerText = "Mass is required";
-
-            } else if (isFinite(massInput.value)) {
-
-                if (planetSelect.value == "none") {
-
-                    planetArea.style.display = "none";
-                    descriptionArea.style.display = "block";
-                    descriptionArea.innerText = "You did not coose a planet yet";
-
-                } else {
-
-                    const planetValues = {
-                        earth: 9.8,
-                        jupiter: 25.8,
-                        mars: 3.7,
-                        mercury: 3.7,
-                        venus: 8.87,
-                        earth: 9.8,
-                        moon: 1.6,
-                        saturn: 10.44,
-                        uranus: 8.69,
-                        neptune: 11.15,
-                        pluto: 0.62
-                    };
-
-                    planetArea.style.display = "block";
-                    planetArea.setAttribute("src", `./pictures/${planetSelect.value}.png`);
-                    descriptionArea.innerHTML = "";
-                    descriptionArea.style.marginLeft = "20px";
-                    descriptionArea.style.display = "flex";
-                    descriptionArea.style.alignItems = "center";
-                    descriptionArea.style.flexDirection = "column";
-
-                    const descriptionAreaHeader = document.createElement("div");
-                    descriptionAreaHeader.style.marginBottom = "20px";
-
-                    const descriptionAreaHeaderPre = document.createElement("span");
-                    descriptionAreaHeaderPre.innerText = "The weight of the object on";
-                    descriptionAreaHeaderPre.style.marginRight = "10px";
-
-                    const descriptionAreaHeaderWhichPlanet = document.createElement("span");
-                    descriptionAreaHeaderWhichPlanet.style.fontWeight = "700";
-                    descriptionAreaHeaderWhichPlanet.innerText = String(planetSelect.value).toUpperCase();
-
-                    descriptionAreaHeader.appendChild(descriptionAreaHeaderPre);
-                    descriptionAreaHeader.appendChild(descriptionAreaHeaderWhichPlanet);
-
-                    const descriptionAreaFooter = document.createElement("div");
-                    descriptionAreaFooter.className = "description-area-calculate";
-
-                    const descriptionAreaFooterText = document.createElement("b");
-                    descriptionAreaFooterText.innerText = (Number(massInput.value) * planetValues[planetSelect.value]).toFixed(2) + " N";
-                    descriptionAreaFooterText.style.position = "absolute";
-                    descriptionAreaFooterText.style.left = "58px";
-                    descriptionAreaFooterText.style.top = "85px";
-
-                    descriptionAreaFooter.appendChild(descriptionAreaFooterText);
-
-                    descriptionArea.appendChild(descriptionAreaHeader);
-                    descriptionArea.appendChild(descriptionAreaFooter);
-
-                }
-            }
-        }
-
-    </script>
+    <script src="./script.js"></script>
 
 </body>
 

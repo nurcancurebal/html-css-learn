@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url("img/galaxy.gif");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2%;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    color: white;
+    text-shadow: 2px 2px #6565ac;
+    font-size: 65px;
+}
+
+#mass-input {
+    margin-top: 3%;
+    padding: 10px;
+    outline: none;
+}
+
+#planet-select {
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#planet-select option {
+    background-color: #6d6c6c94;
+}
+
+header button {
+    background-color: #6d6c6c;
+    padding: 12px;
+    color: white;
+    border-radius: 5px;
+}
+
+.flex-container {
+    background-color: rgba(74, 74, 74, 0.364);
+    margin: 2% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 110px;
+}
+
+#description-area {
+    color: white;
+    background-color: rgba(74, 74, 74, 0.542);
+    padding: 25px 165px;
+    font-size: 25px;
+    display: none;
+}
+
+.description-area-calculate {
+    padding: 100px;
+    background-color: #444444cc;
+    border-radius: 100%;
+    max-width: 100px;
+    position: relative;
+}
