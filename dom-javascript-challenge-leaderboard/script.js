@@ -86,7 +86,10 @@ function playersFunction() {
 
         plusBorderDiv.onclick = function () {
 
-            playerSpanScore.textContent = Number(playerSpanScore.textContent) + 5;
+            PLAYERSOBJ[index].playerScore = Number(PLAYERSOBJ[index].playerScore) + 5;
+
+            playerSpanScore.textContent = PLAYERSOBJ[index].playerScore;
+
         }
 
         plusBorderDiv.appendChild(pointsPlusIcon);
@@ -98,7 +101,10 @@ function playersFunction() {
 
         reduceBorderDiv.onclick = function () {
 
-            playerSpanScore.textContent = Number(playerSpanScore.textContent) - 5;
+
+            PLAYERSOBJ[index].playerScore = Number(PLAYERSOBJ[index].playerScore) - 5;
+
+            playerSpanScore.textContent = PLAYERSOBJ[index].playerScore;
         }
 
         reduceBorderDiv.appendChild(pointsReduceIcon);
