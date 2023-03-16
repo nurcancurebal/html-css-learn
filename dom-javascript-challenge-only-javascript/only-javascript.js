@@ -1,5 +1,5 @@
 // ? Web sitenin başlığı değiştirilir.
-document.title = "Web Sitem";
+document.title = "Only Javascript";
 
 // ? Root elementi oluşturulur.
 const root = document.createElement("root");
