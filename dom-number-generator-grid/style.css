@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 80%;
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+}
+
+header>.description> :nth-child(n) {
+    font-weight: 500;
+}
+
+header>#generator-input {
+    border: 1px solid #5bbc7a;
+    padding: 12px;
+    margin-top: 15px;
+    width: 50vw;
+}
+
+header>#generator-input:focus-visible {
+    outline: none;
+}
+
+button {
+    background-color: #5bbc7a;
+    border: none;
+    color: white;
+    padding: 12px;
+    margin-left: 12px;
+}
+
+#number-content {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    margin-top: 20px;
+    gap: 5px;
+}

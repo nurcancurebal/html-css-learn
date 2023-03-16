@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Generator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="description">
+                <h1 style="color:#5bbc7a;font-size: 40px;">Number Generator</h1>
+                <h2>30DaysOfJavaScript:DOM Day 3</h2>
+                <h3 style="color: #3c3c3c;">Author: Nurcan Cürebal</h3>
+            </div>
+            <p id="p1" style="color:red;display: none;">Enter number value on the input field to generate numbers</p>
+            <p id="p2" style="color:red;display: none;">İnput value must be a number</p>
+            <input id="generator-input" type="text" placeholder="Generate more numbers...">
+            <button onclick="clickMe()" class="generate-buton" type="button">Generate numbers</button>
+        </header>
+        <div id="number-content"></div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
