@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#panel {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px;
+    margin: 20px;
+}
+
+.pNumberGenerator {
+    flex: 15%;
+    text-align: center;
+    padding: 80px;
+    font-size: 50px;
+    margin: 5px;
+    color: white;
+}

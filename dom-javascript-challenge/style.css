@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
+    font-family: "Georgia", Times, serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+    min-width: 600px;
+    list-style-type: none;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul li {
+    padding: 15px;
+}
