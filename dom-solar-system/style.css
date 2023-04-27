@@ -39,6 +39,10 @@ img {
     border-radius: 5px;
 }
 
+#planet-area {
+    width: 50%;
+}
+
 #planet-select option {
     background-color: #6d6c6c94;
 }
