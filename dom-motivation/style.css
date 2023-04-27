@@ -32,13 +32,13 @@
 
 #boxes {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    margin-top: 40px;
 }
 
 .box {
-    width: 250px;
+    width: 185px;
     height: 155px;
-    margin: 50px 100px;
     text-align: center;
     line-height: 155px;
     font-size: 28px;
@@ -52,6 +52,7 @@
 
 #technologies {
     font-size: 15px;
+    margin-top: 40px;
 }
 
 #technologies>span {
