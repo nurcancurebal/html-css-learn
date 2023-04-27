@@ -20,7 +20,11 @@ header {
 header h1 {
     color: white;
     text-shadow: 2px 2px #6565ac;
-    font-size: 65px;
+    font-size: 5vw;
+}
+
+img {
+    width: 50%;
 }
 
 #mass-input {
@@ -48,7 +52,7 @@ header button {
 
 .flex-container {
     background-color: rgba(74, 74, 74, 0.364);
-    margin: 2% 0;
+    margin: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,6 +65,7 @@ header button {
     padding: 25px 165px;
     font-size: 25px;
     display: none;
+    width: 50%;
 }
 
 .description-area-calculate {
