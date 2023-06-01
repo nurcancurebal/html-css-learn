@@ -8,31 +8,33 @@
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <header>
             <h1>Calculate a weight of an object on a planet</h1>
 
-            <input type="text" id="mass-input" placeholder="Enter Mass in Kilogram" />
+            <div style="margin-top: 2%;">
+                <input type="text" id="mass-input" placeholder="Enter Mass in Kilogram" />
 
-            <select id="planet-select">
-                <option value="none">Select Planet</option>
-                <option value="mercury">Mercury</option>
-                <option value="venus">Venus</option>
-                <option value="earth">Earth</option>
-                <option value="moon">Moon</option>
-                <option value="mars">Mars</option>
-                <option value="jupiter">Jupiter</option>
-                <option value="saturn">Saturn</option>
-                <option value="uranus">Uranus</option>
-                <option value="neptune">Neptun</option>
-                <option value="pluto">Pluto</option>
-            </select>
+                <select id="planet-select">
+                    <option value="none">Select Planet</option>
+                    <option value="mercury">Mercury</option>
+                    <option value="venus">Venus</option>
+                    <option value="earth">Earth</option>
+                    <option value="moon">Moon</option>
+                    <option value="mars">Mars</option>
+                    <option value="jupiter">Jupiter</option>
+                    <option value="saturn">Saturn</option>
+                    <option value="uranus">Uranus</option>
+                    <option value="neptune">Neptun</option>
+                    <option value="pluto">Pluto</option>
+                </select>
 
-            <button onclick="calculateWeight()">Calculate Weight</button>
+                <button onclick="calculateWeight()">Calculate Weight</button>
 
+            </div>
         </header>
         <main>
-            <div class="flex-container">
+            <div class="planet-main">
                 <img id="planet-area" src="./img/earth.png" />
                 <div id="description-area"></div>
             </div>

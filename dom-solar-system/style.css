@@ -6,10 +6,12 @@
 
 body {
     background-image: url("img/galaxy.gif");
+}
+
+.container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: center;
     margin-top: 2%;
 }
 
@@ -20,17 +22,13 @@ header {
 header h1 {
     color: white;
     text-shadow: 2px 2px #6565ac;
-    font-size: 5vw;
-}
-
-img {
-    width: 50%;
+    font-size: 4vw;
 }
 
 #mass-input {
-    margin-top: 3%;
     padding: 10px;
     outline: none;
+    border-radius: 5px;
 }
 
 #planet-select {
@@ -39,37 +37,38 @@ img {
     border-radius: 5px;
 }
 
+button {
+    background-color: #6d6c6c;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
 #planet-area {
-    width: 50%;
+    min-width: 200px;
+    max-width: 450px;
 }
 
 #planet-select option {
     background-color: #6d6c6c94;
 }
 
-header button {
-    background-color: #6d6c6c;
-    padding: 12px;
-    color: white;
-    border-radius: 5px;
-}
-
-.flex-container {
+.planet-main {
     background-color: rgba(74, 74, 74, 0.364);
     margin: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 110px;
+    padding: 20px 0;
+    min-height: 450px;
 }
 
 #description-area {
     color: white;
     background-color: rgba(74, 74, 74, 0.542);
-    padding: 25px 165px;
     font-size: 25px;
     display: none;
-    width: 50%;
+    padding: 20px;
 }
 
 .description-area-calculate {
