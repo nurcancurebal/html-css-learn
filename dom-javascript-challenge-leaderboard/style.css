@@ -5,6 +5,11 @@
     font-family: serif;
 }
 
+h1 {
+    display: flex;
+    text-align: center;
+}
+
 #container {
     display: flex;
     flex-direction: column;
@@ -14,14 +19,17 @@
 
 #inputs-button {
     margin: 30px 0;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .inputs {
-    padding: 10px 20px;
+    padding: 5px 10px;
     border: 1px solid #e5c9c5;
     font-size: 15px;
     outline: none;
+    margin-right: 10px;
 }
 
 .inputs:focus {
@@ -29,12 +37,13 @@
 }
 
 .button {
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: #e5c9c5;
     border: none;
     color: white;
     padding: 10px 20px;
     font-size: 17px;
+    margin-right: 10px;
 }
 
 #players {
@@ -98,4 +107,12 @@
     color: red;
     margin-top: 20px;
     font-weight: 900;
+    width: 100%;
+    text-align: center;
+}
+
+@media only screen and (max-width: 445px) {
+    #inputs-button {
+        flex-direction: column;
+    }
 }
