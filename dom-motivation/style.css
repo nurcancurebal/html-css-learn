@@ -43,6 +43,7 @@
     line-height: 155px;
     font-size: 28px;
     box-shadow: 1px 1px 5px rgba(82, 80, 80, 0.435), 1px 1px 5px rgba(82, 80, 80, 0.435);
+    padding: 0 10px;
 }
 
 .box:hover {
